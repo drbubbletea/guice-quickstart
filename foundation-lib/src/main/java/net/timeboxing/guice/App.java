@@ -1,4 +1,4 @@
-package org.example;
+package net.timeboxing.guice;
 
 /**
  * Hello world!

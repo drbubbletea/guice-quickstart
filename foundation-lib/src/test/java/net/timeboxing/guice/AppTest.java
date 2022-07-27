@@ -1,4 +1,4 @@
-package org.example;
+package net.timeboxing.guice;
 
 import org.junit.Test;
 
