@@ -8,8 +8,9 @@ import org.junit.Test;
 public class DataSourceModuleTest {
 
     @Test
-    public void canGetJdbiForDataSource() {
-        Injector injector = Guice.createInjector(new InMemoryDataSourceModule(InMemoryDS.class));
-        Assert.fail();
+    public void canGetInMemoryJdbiAndQuery() {
+        Injector injector = Guice.createInjector(new TestDataSourceModule());
+        TestDAL testDAL = injector.getInstance(TestDAL.class);
+        Assert.assertEquals(1, testDAL.test());
     }
 }
