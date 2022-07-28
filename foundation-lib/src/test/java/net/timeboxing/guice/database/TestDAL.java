@@ -1,10 +1,9 @@
 package net.timeboxing.guice.database;
 
-import org.jdbi.v3.core.Jdbi;
-
-import javax.inject.Inject;
-
 public interface TestDAL {
 
+    /**
+     * Run a simple "SELECT 1" query to see if the datasource is working as expected.
+     */
     int test();
 }

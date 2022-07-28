@@ -4,20 +4,15 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import org.h2.jdbcx.JdbcDataSource;
 import org.jdbi.v3.core.Jdbi;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Provider;
 import javax.sql.DataSource;
 import java.lang.annotation.Annotation;
 
 /**
- * Module for any testing features relating to a database.
+ * For testing features relating to a database. An in-memory database is used to make testing easier.
  */
 public class InMemoryDataSourceModule extends AbstractModule {
-
-    private static final Logger LOG = LoggerFactory.getLogger(InMemoryDataSourceModule.class);
-
     private final Class<? extends Annotation> dataSourceAnnotation;
 
     public InMemoryDataSourceModule(Class<? extends Annotation> dataSource) {
@@ -27,7 +22,6 @@ public class InMemoryDataSourceModule extends AbstractModule {
     @Override
     protected void configure() {
         super.configure();
-
         Provider<DataSource> dataSourceProvider = new DataSourceProvider();
         bind(DataSource.class).annotatedWith(dataSourceAnnotation).toProvider(dataSourceProvider);
         bind(Jdbi.class).annotatedWith(dataSourceAnnotation).toProvider(new JdbiProvider(dataSourceProvider)).in(Scopes.SINGLETON);
