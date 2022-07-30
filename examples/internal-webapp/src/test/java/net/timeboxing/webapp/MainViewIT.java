@@ -1,4 +1,4 @@
-package org.vaadin.example;
+package net.timeboxing.webapp;
 
 import com.vaadin.flow.component.button.testbench.ButtonElement;
 import com.vaadin.flow.component.notification.testbench.NotificationElement;
