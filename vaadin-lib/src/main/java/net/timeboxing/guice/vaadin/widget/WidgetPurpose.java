@@ -1,4 +1,6 @@
 package net.timeboxing.guice.vaadin.widget;
 
-public class WidgetPurpose {
+public enum WidgetPurpose {
+    EDIT,
+    VIEW
 }

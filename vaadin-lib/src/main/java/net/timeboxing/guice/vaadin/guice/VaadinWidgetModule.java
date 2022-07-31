@@ -1,4 +1,6 @@
 package net.timeboxing.guice.vaadin.guice;
 
-public class VaadinWidgetModule {
+import com.google.inject.AbstractModule;
+
+public class VaadinWidgetModule extends AbstractModule {
 }
