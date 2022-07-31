@@ -1,8 +1,8 @@
-package net.timeboxing.guice.adapter;
-
-import org.junit.Test;
+package net.timeboxing;
 
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * Unit test for simple App.

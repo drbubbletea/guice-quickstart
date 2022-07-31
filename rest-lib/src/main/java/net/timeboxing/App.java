@@ -1,4 +1,4 @@
-package net.timeboxing.guice.adapter;
+package net.timeboxing;
 
 /**
  * Hello world!
