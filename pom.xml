@@ -10,6 +10,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>foundation-lib</module>
+      <module>vaadin-lib</module>
     </modules>
 
     <name>guice-quickstart</name>
