@@ -11,6 +11,7 @@
     <modules>
         <module>foundation-lib</module>
       <module>vaadin-lib</module>
+      <module>adaptable-lib</module>
     </modules>
 
     <name>guice-quickstart</name>
