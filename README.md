@@ -6,17 +6,15 @@ https://github.com/drbubbletea/guice-quickstart
 
 [MIT Licensed](LICENSE)
 
-## Motivation
-
-An opinionated quickstart for my own projects to give a starting point without depending on common Java frameworks.
-
 ## Libraries
 
-### adaptable-lib
+### [adapter-lib](./adapter-lib)
 
-### foundation-lib
+### [foundation-lib](./foundation-lib)
 
-### vaadin-lib
+### [rest-lib](./rest-lib)
+
+### [vaadin-lib](./vaadin-lib)
 
 ## Examples
 
