@@ -22,7 +22,10 @@ public class ComponentAdapter {
         componentFactoriesProvider = provider;
     }
 
-    public Optional<Component> adapt(Object source, ComponentPurpose purpose) {
+    /**
+     * Find a suitable Component based on the source object and the stated purpose.
+     */
+    public static Optional<Component> adapt(Object source, ComponentPurpose purpose) {
         if (componentFactoriesProvider == null) {
             throw new ComponentAdapterException("Component factories provider not initialized");
         }

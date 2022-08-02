@@ -1,4 +1,4 @@
 package net.timeboxing.vaadin.component;
 
-public class ComponentFactory {
+public class ComponentFactory<T> {
 }
