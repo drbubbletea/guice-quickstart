@@ -1,4 +1,4 @@
-package net.timeboxing.guice.database;
+package net.timeboxing.database;
 
 import org.jdbi.v3.core.ConnectionFactory;
 import org.jdbi.v3.core.Jdbi;

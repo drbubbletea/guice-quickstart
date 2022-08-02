@@ -1,4 +1,4 @@
-package net.timeboxing.guice.vaadin.guice;
+package net.timeboxing.vaadin.guice;
 
 import com.google.inject.AbstractModule;
 

@@ -1,4 +1,4 @@
-package net.timeboxing.guice.database;
+package net.timeboxing.database;
 
 import javax.inject.Provider;
 import javax.naming.InitialContext;

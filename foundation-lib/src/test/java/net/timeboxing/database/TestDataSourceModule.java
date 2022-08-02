@@ -1,8 +1,8 @@
-package net.timeboxing.guice.database;
+package net.timeboxing.database;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
-import net.timeboxing.guice.database.impl.DBTestDAL;
+import net.timeboxing.database.impl.DBTestDAL;
 
 public class TestDataSourceModule extends AbstractModule {
     @Override

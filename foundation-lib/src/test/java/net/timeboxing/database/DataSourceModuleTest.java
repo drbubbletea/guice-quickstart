@@ -1,4 +1,4 @@
-package net.timeboxing.guice.database;
+package net.timeboxing.database;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

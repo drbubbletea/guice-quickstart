@@ -1,4 +1,4 @@
-package net.timeboxing.guice.adapter.guice;
+package net.timeboxing.adapter.guice;
 
 import com.google.inject.AbstractModule;
 import org.slf4j.Logger;

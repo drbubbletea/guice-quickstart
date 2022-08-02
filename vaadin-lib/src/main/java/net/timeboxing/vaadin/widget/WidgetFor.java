@@ -1,4 +1,4 @@
-package net.timeboxing.guice.vaadin.widget;
+package net.timeboxing.vaadin.widget;
 
 
 import com.google.inject.BindingAnnotation;

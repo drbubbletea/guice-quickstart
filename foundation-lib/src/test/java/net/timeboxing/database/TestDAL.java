@@ -1,4 +1,4 @@
-package net.timeboxing.guice.database;
+package net.timeboxing.database;
 
 public interface TestDAL {
 
