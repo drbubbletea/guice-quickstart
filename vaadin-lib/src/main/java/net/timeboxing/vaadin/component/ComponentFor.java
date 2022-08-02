@@ -1,4 +1,4 @@
-package net.timeboxing.vaadin.widget;
+package net.timeboxing.vaadin.component;
 
 
 import com.google.inject.BindingAnnotation;
@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface WidgetFor {
+public @interface ComponentFor {
 }
