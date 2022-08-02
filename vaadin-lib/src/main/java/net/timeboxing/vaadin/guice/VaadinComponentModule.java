@@ -1,7 +1,7 @@
 package net.timeboxing.vaadin.guice;
 
 import com.google.inject.AbstractModule;
-import net.timeboxing.vaadin.ComponentAdapter;
+import net.timeboxing.vaadin.component.ComponentAdapter;
 
 public class VaadinComponentModule extends AbstractModule {
 
