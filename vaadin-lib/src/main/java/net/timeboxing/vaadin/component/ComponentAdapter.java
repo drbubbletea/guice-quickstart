@@ -7,7 +7,7 @@ import javax.inject.Provider;
 import java.util.Optional;
 
 /**
- * Static implementation of the adapter pattern for our Vaadin widgets.
+ * Static implementation of the adapter pattern for our Vaadin components.
  */
 public class ComponentAdapter {
 
@@ -18,7 +18,7 @@ public class ComponentAdapter {
     }
 
     @Inject
-    static void initialize(Provider<ComponentFactories> provider) {
+    public static void initialize(Provider<ComponentFactories> provider) {
         componentFactoriesProvider = provider;
     }
 
