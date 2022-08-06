@@ -16,7 +16,11 @@ public class DefaultComponentFactories implements ComponentFactories {
     }
 
     public Optional<Component> get(Object source, ComponentPurpose purpose) {
-
+        for (ComponentFactory<?> factory : componentFactories) {
+            if (factory.supports(source.getClass())) {
+                return Optional.of((Component) factory.create());
+            }
+        }
         return Optional.empty();
     }
 }

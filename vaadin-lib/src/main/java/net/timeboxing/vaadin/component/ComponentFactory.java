@@ -1,4 +1,8 @@
 package net.timeboxing.vaadin.component;
 
-public class ComponentFactory<T> {
+public interface ComponentFactory<T> {
+
+    boolean supports(Class<?> clazz);
+
+    Object create();
 }
