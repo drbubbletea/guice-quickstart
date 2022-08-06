@@ -7,6 +7,7 @@ public class ComponentFactoryTest {
 
     @Test
     public void supportsExactClass() {
+        Class<>
         Assertions.fail();
     }
 
