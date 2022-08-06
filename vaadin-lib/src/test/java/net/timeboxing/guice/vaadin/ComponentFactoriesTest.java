@@ -19,8 +19,24 @@ public class ComponentFactoriesTest {
         Set<ComponentFactory<?>> factories = new HashSet<>();
         ComponentFactories componentFactories = new DefaultComponentFactories(factories);
 
-        Optional<Component> result = componentFactories.get(new String(), ComponentPurpose.VIEW);
+        Optional<Component> result = componentFactories.get(new Object(), ComponentPurpose.VIEW);
 
         Assertions.assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void precedenceMatchingClass() {
+        Assertions.fail();
+    }
+
+    @Test
+    public void precedenceMatchingInterface() {
+        Assertions.fail();
+    }
+
+
+    @Test
+    public void precedenceMatchingAbstractClass() {
+        Assertions.fail();
     }
 }
