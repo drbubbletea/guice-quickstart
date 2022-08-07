@@ -4,5 +4,5 @@ public interface ComponentFactory<T> {
 
     boolean supports(Class<?> clazz);
 
-    Object create();
+    Object create(Object source, ComponentPurpose purpose);
 }

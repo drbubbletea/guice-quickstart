@@ -16,7 +16,7 @@ public class DefaultComponentFactory<T> implements ComponentFactory<T> {
     }
 
     @Override
-    public Object create() {
+    public Object create(Object source, ComponentPurpose purpose) {
         return null;
     }
 }

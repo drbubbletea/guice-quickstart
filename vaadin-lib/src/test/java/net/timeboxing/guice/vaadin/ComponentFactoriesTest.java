@@ -71,7 +71,7 @@ public class ComponentFactoriesTest {
         }
 
         @Override
-        public Object create() {
+        public Object create(Object source, ComponentPurpose purpose) {
             try {
                 return new TestComponent();
             } catch (Exception e) {
@@ -97,8 +97,8 @@ public class ComponentFactoriesTest {
         }
 
         @Override
-        public Object create() {
-            throw new RuntimeException();
+        public Object create(Object source, ComponentPurpose purpose) {
+            throw new RuntimeException("not supported");
         }
     }
 
