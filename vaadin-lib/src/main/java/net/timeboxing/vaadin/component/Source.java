@@ -1,6 +1,5 @@
 package net.timeboxing.vaadin.component;
 
-
 import com.google.inject.BindingAnnotation;
 
 import java.lang.annotation.ElementType;
@@ -10,10 +9,6 @@ import java.lang.annotation.Target;
 
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
-public @interface ComponentFor {
-
-    Class<?> source();
-
-    ComponentPurpose purpose() default ComponentPurpose.DEFAULT;
+@Target({ElementType.PARAMETER})
+public @interface Source {
 }
