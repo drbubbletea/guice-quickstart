@@ -9,6 +9,9 @@ import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Provider;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class VaadinComponentModule extends AbstractModule {
@@ -24,15 +27,21 @@ public class VaadinComponentModule extends AbstractModule {
     @Override
     protected void configure() {
         requestStaticInjection(ComponentAdapter.class);
-        bind(ComponentFactories.class).to(DefaultComponentFactories.class).in(Scopes.SINGLETON);
-
-        Multibinder<ComponentFactory<?>> factoryBinder = Multibinder.newSetBinder(binder(), new TypeLiteral<ComponentFactory<?>>() {
-        });
 
         Reflections reflections = new Reflections(packageToScan);
         Set<Class<?>> components = reflections.getTypesAnnotatedWith(ComponentFor.class);
         for (Class<?> component : components) {
             LOG.debug("Found class {}", component.getCanonicalName());
+            ComponentFor annotation = component.getAnnotation(ComponentFor.class);
+            Class<?> source = annotation.source();
+            ComponentPurpose purpose = annotation.purpose();
+            // TODO: mapped binder instead and change defaultComponentFactory
+            Map<Class, ComponentCreator> creators = new HashMap<>();
+            ComponentCreator creator = new DefaultComponentCreator();
+            creators.put(source, creator);
+            ComponentFactory factory = new DefaultComponentFactory(creators);
+            bind()
+            factoryBinder.addBinding().toInstance(factory);
         }
     }
 }

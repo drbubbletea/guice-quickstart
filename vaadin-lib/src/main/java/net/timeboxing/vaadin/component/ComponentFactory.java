@@ -1,8 +1,10 @@
 package net.timeboxing.vaadin.component;
 
+import com.vaadin.flow.component.Component;
+
+import java.util.Optional;
+
 public interface ComponentFactory<T> {
 
-    boolean supports(Class<?> clazz);
-
-    Object create(Object source, ComponentPurpose purpose);
+    Optional<Component> create(Object source, ComponentPurpose purpose);
 }

@@ -5,6 +5,7 @@ import com.google.inject.Injector;
 import com.vaadin.flow.component.Component;
 import net.timeboxing.guice.vaadin.guice.impl.DefaultUser;
 import net.timeboxing.guice.vaadin.guice.impl.User;
+import net.timeboxing.guice.vaadin.guice.impl.UserEditComponent;
 import net.timeboxing.guice.vaadin.guice.impl.UserViewComponent;
 import net.timeboxing.vaadin.component.ComponentAdapter;
 import net.timeboxing.vaadin.component.ComponentPurpose;
@@ -24,5 +25,15 @@ public class GuiceComponentAdapterTest {
 
         Assertions.assertTrue(component.isPresent());
         Assertions.assertEquals(UserViewComponent.class, component.orElseThrow().getClass());
+    }
+
+    @Test
+    public void differentPurposeSameClass() {
+        User user = new DefaultUser(5);
+        Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
+        Optional<Component> component = ComponentAdapter.adapt(user, ComponentPurpose.EDIT);
+
+        Assertions.assertTrue(component.isPresent());
+        Assertions.assertEquals(UserEditComponent.class, component.orElseThrow().getClass());
     }
 }

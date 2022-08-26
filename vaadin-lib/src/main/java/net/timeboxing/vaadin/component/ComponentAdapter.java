@@ -11,25 +11,25 @@ import java.util.Optional;
  */
 public class ComponentAdapter {
 
-    private static Provider<ComponentFactories> componentFactoriesProvider;
+    private static Provider<ComponentFactory<?>> componentFactoryProvider;
 
     private ComponentAdapter() {
         /* NOOP */
     }
 
     @Inject
-    public static void initialize(Provider<ComponentFactories> provider) {
-        componentFactoriesProvider = provider;
+    public static void initialize(Provider<ComponentFactory<?>> provider) {
+        componentFactoryProvider = provider;
     }
 
     /**
      * Find a suitable Component based on the source object and the stated purpose.
      */
     public static Optional<Component> adapt(Object source, ComponentPurpose purpose) {
-        if (componentFactoriesProvider == null) {
-            throw new ComponentAdapterException("Component factories provider not initialized");
+        if (componentFactoryProvider == null) {
+            throw new ComponentAdapterException("Component factory not initialized");
         }
-        return componentFactoriesProvider.get().get(source, purpose);
+        return componentFactoryProvider.get().create(source, purpose);
     }
 
 }
