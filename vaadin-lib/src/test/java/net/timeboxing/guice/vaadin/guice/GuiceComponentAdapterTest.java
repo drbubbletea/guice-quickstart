@@ -29,6 +29,16 @@ public class GuiceComponentAdapterTest {
     }
 
     @Test
+    public void adaptContainsPurpose() {
+        User user = new DefaultUser(5);
+        Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
+
+        Assertions.assertTrue(component.isPresent());
+        Assertions.assertEquals(ComponentPurpose.VIEW, ((UserViewComponent) component.orElseThrow()).purpose());
+    }
+
+    @Test
     public void differentPurposeSameClass() {
         User user = new DefaultUser(5);
         Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
