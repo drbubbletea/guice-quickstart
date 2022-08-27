@@ -40,7 +40,6 @@ public class ComponentAdapter {
         VaadinComponentCreator creator = creatorsProvider.get().getOrDefault(key, null);
         VaadinComponent result = null;
         if (creator != null) {
-            LOG.info("Creating...");
             result = creator.create(source, purpose);
         }
         if (result == null) {
@@ -51,7 +50,6 @@ public class ComponentAdapter {
                 LOG.debug("Looking for creator for {}", key);
                 creator = creatorsProvider.get().getOrDefault(key, null);
                 if (creator != null) {
-                    LOG.info("Creating...");
                     result = creator.create(source, purpose);
                     break;
                 }
