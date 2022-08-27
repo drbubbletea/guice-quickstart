@@ -14,10 +14,14 @@ public class VaadinComponentCreator {
     private final Class<?> componentClass;
 
     private final Constructor<?> constructor;
+    private final Object[] parameterTypes;
+    private final Annotation[][] parameterAnnotations;
 
     public VaadinComponentCreator(Class<?> componentClass) {
         this.componentClass = componentClass;
         this.constructor = getConstructor();
+        this.parameterTypes = constructor.getParameterTypes();
+        this.parameterAnnotations = constructor.getParameterAnnotations();
     }
 
     @Inject
@@ -38,8 +42,6 @@ public class VaadinComponentCreator {
 
     private Object[] getParameters(ComponentPurpose purpose, Object source) {
         Object[] parameters = new Object[constructor.getParameterCount()];
-        Object[] parameterTypes = constructor.getParameterTypes();
-        Annotation[][] parameterAnnotations = constructor.getParameterAnnotations();
         for (int i = 0; i < parameters.length; i++) {
             if (ComponentPurpose.class == parameterTypes[i]) {
                 parameters[i] = purpose;
