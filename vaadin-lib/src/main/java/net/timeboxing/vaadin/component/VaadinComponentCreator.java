@@ -6,14 +6,14 @@ import com.vaadin.flow.component.Component;
 import javax.inject.Inject;
 import java.lang.reflect.Constructor;
 
-public class ComponentCreator {
+public class VaadinComponentCreator {
 
     private Injector injector;
     private final Class<?> componentClass;
 
     private final Constructor<?> constructor;
 
-    public ComponentCreator(Class<?> componentClass) {
+    public VaadinComponentCreator(Class<?> componentClass) {
         this.componentClass = componentClass;
         this.constructor = getConstructor();
     }
@@ -23,13 +23,13 @@ public class ComponentCreator {
         this.injector = injector;
     }
 
-    public Component create(Object source, ComponentPurpose purpose) {
+    public VaadinComponent create(Object source, ComponentPurpose purpose) {
         try {
             Object[] parameters = new Object[constructor.getParameterCount()];
             parameters[0] = source;
             Object instance = constructor.newInstance(parameters);
             injector.injectMembers(instance);
-            return (Component) instance;
+            return (VaadinComponent) instance;
         } catch (Exception e) {
             throw new ComponentAdapterException("Failed to create component instance", e);
         }

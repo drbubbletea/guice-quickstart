@@ -9,6 +9,7 @@ import net.timeboxing.guice.vaadin.guice.impl.UserEditComponent;
 import net.timeboxing.guice.vaadin.guice.impl.UserViewComponent;
 import net.timeboxing.vaadin.component.ComponentAdapter;
 import net.timeboxing.vaadin.component.ComponentPurpose;
+import net.timeboxing.vaadin.component.VaadinComponent;
 import net.timeboxing.vaadin.guice.VaadinComponentModule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class GuiceComponentAdapterTest {
     public void canAdapt() {
         User user = new DefaultUser(5);
         Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
-        Optional<Component> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
 
         Assertions.assertTrue(component.isPresent());
         Assertions.assertEquals(UserViewComponent.class, component.orElseThrow().getClass());
@@ -31,7 +32,7 @@ public class GuiceComponentAdapterTest {
     public void differentPurposeSameClass() {
         User user = new DefaultUser(5);
         Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
-        Optional<Component> component = ComponentAdapter.adapt(user, ComponentPurpose.EDIT);
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.EDIT);
 
         Assertions.assertTrue(component.isPresent());
         Assertions.assertEquals(UserEditComponent.class, component.orElseThrow().getClass());

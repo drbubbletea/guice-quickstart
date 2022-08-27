@@ -1,7 +1,6 @@
 package net.timeboxing.vaadin.component;
 
 import com.vaadin.flow.component.Component;
-import net.timeboxing.vaadin.guice.VaadinComponentModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,29 +16,29 @@ public class ComponentAdapter {
 
     private static final Logger LOG = LoggerFactory.getLogger(ComponentAdapter.class);
 
-    private static Provider<Map<ComponentCreatorKey, ComponentCreator>> creatorsProvider;
+    private static Provider<Map<ComponentCreatorKey, VaadinComponentCreator>> creatorsProvider;
 
     private ComponentAdapter() {
         /* NOOP */
     }
 
     @Inject
-    public static void initialize(Provider<Map<ComponentCreatorKey, ComponentCreator>> provider) {
+    public static void initialize(Provider<Map<ComponentCreatorKey, VaadinComponentCreator>> provider) {
         creatorsProvider = provider;
     }
 
     /**
      * Find a suitable Component based on the source object and the stated purpose.
      */
-    public static Optional<Component> adapt(Object source, ComponentPurpose purpose) {
+    public static Optional<VaadinComponent> adapt(Object source, ComponentPurpose purpose) {
         if (creatorsProvider == null) {
             throw new ComponentAdapterException("Component factory not initialized");
         }
         ComponentCreatorKey key = new ComponentCreatorKey(source.getClass(), purpose);
         // find creator for class
         LOG.debug("Looking for creator for {}", key);
-        ComponentCreator creator = creatorsProvider.get().getOrDefault(key, null);
-        Component result = null;
+        VaadinComponentCreator creator = creatorsProvider.get().getOrDefault(key, null);
+        VaadinComponent result = null;
         if (creator != null) {
             LOG.info("Creating...");
             result = creator.create(source, purpose);
