@@ -11,20 +11,21 @@ public class DefaultComponentCreator implements ComponentCreator {
     private final Injector injector;
     private final Class<?> componentClass;
 
+    private final Constructor<?> constructor;
+
     public DefaultComponentCreator(Class<?> componentClass, Injector injector) {
         this.componentClass = componentClass;
         this.injector = injector;
+        this.constructor = getConstructor(componentClass);
     }
     @Override
     public Component create(Class<?> clazz, ComponentPurpose purpose) {
         try {
-            // get constructor (TODO: do once per class in constructor)
-            Constructor<?> ctr = getConstructor(componentClass);
-
             // create instance from constructor
+            Object instance = constructor.newInstance();
             // inject
             // return
-            return (Component) clazz.newInstance();
+            return (Component) instance;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

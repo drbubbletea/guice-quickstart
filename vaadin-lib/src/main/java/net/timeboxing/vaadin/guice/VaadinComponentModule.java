@@ -35,13 +35,9 @@ public class VaadinComponentModule extends AbstractModule {
             ComponentFor annotation = component.getAnnotation(ComponentFor.class);
             Class<?> source = annotation.source();
             ComponentPurpose purpose = annotation.purpose();
-            // TODO: mapped binder instead and change defaultComponentFactory
-            Map<Class, ComponentCreator> creators = new HashMap<>();
-            ComponentCreator creator = new DefaultComponentCreator();
-            creators.put(source, creator);
-            ComponentFactory factory = new DefaultComponentFactory(creators);
-            bind()
-            factoryBinder.addBinding().toInstance(factory);
+            Map<Class<?>, ComponentCreator> creators = new HashMap<>();
+//            ComponentCreator creator = new DefaultComponentCreator();
+//            creators.put(source, creator);
         }
     }
 }
