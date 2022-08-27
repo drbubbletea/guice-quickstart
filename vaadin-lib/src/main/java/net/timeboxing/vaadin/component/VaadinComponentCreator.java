@@ -40,8 +40,6 @@ public class VaadinComponentCreator {
         Object[] parameters = new Object[constructor.getParameterCount()];
         Object[] parameterTypes = constructor.getParameterTypes();
         Annotation[][] parameterAnnotations = constructor.getParameterAnnotations();
-        // TODO: source if annotation present
-        // TODO: purpose if a parameter
         for (int i = 0; i < parameters.length; i++) {
             if (ComponentPurpose.class == parameterTypes[i]) {
                 parameters[i] = purpose;
