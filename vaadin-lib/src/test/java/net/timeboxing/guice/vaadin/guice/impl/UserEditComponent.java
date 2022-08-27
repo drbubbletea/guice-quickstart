@@ -7,7 +7,7 @@ import net.timeboxing.vaadin.component.Source;
 
 import javax.inject.Inject;
 
-@ComponentFor(source = User.class, purpose = ComponentPurpose.EDIT)
+@ComponentFor(forClass = User.class, purpose = ComponentPurpose.EDIT)
 public class UserEditComponent extends Component {
 
     private final User user;

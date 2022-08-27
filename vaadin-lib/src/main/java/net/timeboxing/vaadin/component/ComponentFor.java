@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface ComponentFor {
 
-    Class<?> source();
+    Class<?> forClass();
 
     ComponentPurpose purpose() default ComponentPurpose.DEFAULT;
 }

@@ -1,17 +1,13 @@
 package net.timeboxing.vaadin.guice;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
-import com.google.inject.multibindings.Multibinder;
+import com.google.inject.multibindings.MapBinder;
 import net.timeboxing.vaadin.component.*;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Provider;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 public class VaadinComponentModule extends AbstractModule {
@@ -19,6 +15,9 @@ public class VaadinComponentModule extends AbstractModule {
     private static final Logger LOG = LoggerFactory.getLogger(VaadinComponentModule.class);
 
     private final String packageToScan;
+
+    private final TypeLiteral<ComponentCreatorKey> componentCreatorKeyTypeLiteral = TypeLiteral.get(ComponentCreatorKey.class);
+    private final TypeLiteral<ComponentCreator> componentCreatorTypeLiteral = TypeLiteral.get(ComponentCreator.class);
 
     public VaadinComponentModule(String packageToScan) {
         this.packageToScan = packageToScan;
@@ -30,14 +29,16 @@ public class VaadinComponentModule extends AbstractModule {
 
         Reflections reflections = new Reflections(packageToScan);
         Set<Class<?>> components = reflections.getTypesAnnotatedWith(ComponentFor.class);
+        MapBinder<ComponentCreatorKey, ComponentCreator> creators = MapBinder.newMapBinder(binder(), componentCreatorKeyTypeLiteral, componentCreatorTypeLiteral);
         for (Class<?> component : components) {
             LOG.debug("Found class {}", component.getCanonicalName());
             ComponentFor annotation = component.getAnnotation(ComponentFor.class);
-            Class<?> source = annotation.source();
+            Class<?> forClass = annotation.forClass();
             ComponentPurpose purpose = annotation.purpose();
-            Map<Class<?>, ComponentCreator> creators = new HashMap<>();
-//            ComponentCreator creator = new DefaultComponentCreator();
-//            creators.put(source, creator);
+            ComponentCreatorKey key = new ComponentCreatorKey(forClass, purpose);
+            ComponentCreator creator = new ComponentCreator(component);
+            creators.addBinding(key).toInstance(creator);
+            LOG.debug("Bound creator: {}", key);
         }
     }
 }
