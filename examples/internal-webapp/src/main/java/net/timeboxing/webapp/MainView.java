@@ -8,8 +8,12 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.guice.annotation.UIScope;
+import net.timeboxing.vaadin.component.ComponentAdapter;
+import net.timeboxing.vaadin.component.ComponentPurpose;
+import net.timeboxing.vaadin.component.VaadinComponent;
 
 import javax.inject.Inject;
+import java.util.Optional;
 
 /**
  * The main view contains a text field for getting the user name and a button
@@ -41,5 +45,9 @@ public class MainView extends VerticalLayout {
         addClassName("centered-content");
 
         add(textField, button);
+
+        User user = new User(123);
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
+        add(component.orElseThrow().get());
     }
 }

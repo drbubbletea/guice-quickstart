@@ -2,8 +2,8 @@ package net.timeboxing.database;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class DataSourceModuleTest {
 
@@ -11,6 +11,6 @@ public class DataSourceModuleTest {
     public void canGetInMemoryJdbiAndQuery() {
         Injector injector = Guice.createInjector(new TestDataSourceModule());
         TestDAL testDAL = injector.getInstance(TestDAL.class);
-        Assert.assertEquals(1, testDAL.test());
+        Assertions.assertEquals(1, testDAL.test());
     }
 }

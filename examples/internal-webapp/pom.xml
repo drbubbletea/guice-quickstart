@@ -89,6 +89,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.timeboxing</groupId>
+            <artifactId>vaadin-lib</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>com.vaadin</groupId>
             <!-- Replace artifactId with vaadin-core to use only free components -->
             <artifactId>vaadin</artifactId>
