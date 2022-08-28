@@ -6,17 +6,17 @@ import net.timeboxing.settings.impl.PropertiesSettings;
 
 public class PropertiesSettingsModule extends AbstractModule {
 
-    private final String path;
+    private final String fileName;
 
-    public PropertiesSettingsModule(String path) {
-        this.path = path;
+    public PropertiesSettingsModule(String fileName) {
+        this.fileName = fileName;
     }
 
     @Override
     protected void configure() {
         super.configure();
         // TODO: support check for updates & event handling for updates
-        PropertiesSettings settings = new PropertiesSettings(path);
+        PropertiesSettings settings = new PropertiesSettings(fileName);
         bind(Settings.class).toInstance(settings);
     }
 }

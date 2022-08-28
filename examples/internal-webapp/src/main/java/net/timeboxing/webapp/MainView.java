@@ -6,8 +6,8 @@ import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.Route;
 import com.vaadin.guice.annotation.UIScope;
+import net.timeboxing.settings.Settings;
 import net.timeboxing.vaadin.component.ComponentAdapter;
 import net.timeboxing.vaadin.component.ComponentPurpose;
 import net.timeboxing.vaadin.component.VaadinComponent;
@@ -24,7 +24,7 @@ import java.util.Optional;
 public class MainView extends VerticalLayout {
 
     @Inject
-    public MainView(GreetService greetService) {
+    public MainView(GreetService greetService, Settings settings) {
         // Use TextField for standard text input
         TextField textField = new TextField("Your name");
         textField.addThemeName("bordered");
@@ -49,5 +49,10 @@ public class MainView extends VerticalLayout {
         User user = new User(123);
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
         add(component.orElseThrow().get());
+
+        Optional<String> value = settings.getString("somekey");
+        if (!"somevalue".equals(value.orElseThrow())) {
+            throw new RuntimeException("Failed to load properties");
+        }
     }
 }

@@ -1,6 +1,5 @@
 package net.timeboxing.settings;
 
-import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import net.timeboxing.settings.guice.PropertiesSettingsModule;
@@ -11,7 +10,7 @@ public class PropertiesSettingsTest {
 
     @Test
     public void canGetProperties() {
-        Injector injector = Guice.createInjector(new PropertiesSettingsModule("src/test/resources/example.properties"));
+        Injector injector = Guice.createInjector(new PropertiesSettingsModule("classpath:/example.properties"));
         Settings settings = injector.getInstance(Settings.class);
         Assertions.assertEquals("test", settings.getString("database.name").orElseThrow());
         Assertions.assertEquals("tester", settings.getString("database.username").orElseThrow());
