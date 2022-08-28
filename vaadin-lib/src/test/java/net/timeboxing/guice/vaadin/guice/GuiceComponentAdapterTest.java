@@ -9,7 +9,6 @@ import net.timeboxing.guice.vaadin.guice.impl.UserViewComponent;
 import net.timeboxing.vaadin.component.ComponentAdapter;
 import net.timeboxing.vaadin.component.ComponentPurpose;
 import net.timeboxing.vaadin.component.VaadinComponent;
-import net.timeboxing.vaadin.guice.VaadinComponentModule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +19,7 @@ public class GuiceComponentAdapterTest {
     @Test
     public void canAdapt() {
         User user = new DefaultUser(5);
-        Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
+        Injector injector = Guice.createInjector(new TestVaadinComponentModule());
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
 
         Assertions.assertTrue(component.isPresent());
@@ -30,17 +29,28 @@ public class GuiceComponentAdapterTest {
     @Test
     public void adaptContainsPurpose() {
         User user = new DefaultUser(5);
-        Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
+        Injector injector = Guice.createInjector(new TestVaadinComponentModule());
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
 
         Assertions.assertTrue(component.isPresent());
         Assertions.assertEquals(ComponentPurpose.VIEW, ((UserViewComponent) component.orElseThrow()).purpose());
     }
 
+
+    @Test
+    public void adaptContainsInjectedMembers() {
+        User user = new DefaultUser(5);
+        Injector injector = Guice.createInjector(new TestVaadinComponentModule());
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
+
+        Assertions.assertTrue(component.isPresent());
+        Assertions.assertEquals("12345", ((UserViewComponent) component.orElseThrow()).testService().callMe());
+    }
+
     @Test
     public void differentPurposeSameClass() {
         User user = new DefaultUser(5);
-        Injector injector = Guice.createInjector(new VaadinComponentModule("net.timeboxing"));
+        Injector injector = Guice.createInjector(new TestVaadinComponentModule());
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.EDIT);
 
         Assertions.assertTrue(component.isPresent());

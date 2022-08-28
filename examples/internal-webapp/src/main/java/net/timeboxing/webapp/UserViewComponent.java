@@ -18,11 +18,14 @@ public class UserViewComponent implements VaadinComponent {
 
     private final VerticalLayout layout;
 
+    private final GreetService greetService;
+
     @Inject
-    public UserViewComponent(@Source User user, ComponentPurpose purpose) {
+    public UserViewComponent(@Source User user, ComponentPurpose purpose, GreetService greetService) {
         this.user = user;
         this.purpose = purpose;
         this.layout = new VerticalLayout();
+        this.greetService = greetService;
         layout.add(new Label("Testing"));
     }
     @Override

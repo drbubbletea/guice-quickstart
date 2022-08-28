@@ -16,10 +16,13 @@ public class UserViewComponent implements VaadinComponent {
     private final Component component;
     private final ComponentPurpose purpose;
 
+    private final TestService testService;
+
     @Inject
-    public UserViewComponent(@Source User user, ComponentPurpose purpose) {
+    public UserViewComponent(@Source User user, ComponentPurpose purpose, TestService testService) {
         this.user = user;
         this.purpose = purpose;
+        this.testService = testService;
         this.component = new Label("test");
     }
 
@@ -34,5 +37,9 @@ public class UserViewComponent implements VaadinComponent {
 
     public ComponentPurpose purpose() {
         return purpose;
+    }
+
+    public TestService testService() {
+        return testService;
     }
 }
