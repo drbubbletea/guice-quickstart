@@ -1,7 +1,5 @@
 package net.timeboxing.settings.setting.impl;
 
-import net.timeboxing.settings.setting.Setting;
-
 public class IntegerSetting extends AbstractSetting<Integer> {
 
     public IntegerSetting(Integer value, String name) {

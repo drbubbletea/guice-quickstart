@@ -1,11 +1,11 @@
 package net.timeboxing.guice.vaadin.guice.impl;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.html.Label;
 import net.timeboxing.vaadin.component.ComponentFor;
 import net.timeboxing.vaadin.component.ComponentPurpose;
 import net.timeboxing.vaadin.component.Source;
 import net.timeboxing.vaadin.component.VaadinComponent;
-import com.vaadin.flow.component.html.Label;
 
 import javax.inject.Inject;
 

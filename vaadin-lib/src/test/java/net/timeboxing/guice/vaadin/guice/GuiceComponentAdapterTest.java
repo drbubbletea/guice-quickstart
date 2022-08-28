@@ -2,7 +2,6 @@ package net.timeboxing.guice.vaadin.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.vaadin.flow.component.Component;
 import net.timeboxing.guice.vaadin.guice.impl.DefaultUser;
 import net.timeboxing.guice.vaadin.guice.impl.User;
 import net.timeboxing.guice.vaadin.guice.impl.UserEditComponent;

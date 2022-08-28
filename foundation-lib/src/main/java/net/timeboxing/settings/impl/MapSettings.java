@@ -1,7 +1,5 @@
 package net.timeboxing.settings.impl;
 
-import com.google.common.collect.ImmutableMap;
-
 import java.util.Map;
 
 /**

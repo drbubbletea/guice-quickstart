@@ -1,7 +1,11 @@
 import 'construct-style-sheets-polyfill';
-import { DomModule } from "@polymer/polymer/lib/elements/dom-module";
-import { stylesFromTemplate } from "@polymer/polymer/lib/utils/style-gather";
-import { css, unsafeCSS, registerStyles } from '@vaadin/vaadin-themable-mixin/register-styles';
+import {DomModule} from "@polymer/polymer/lib/elements/dom-module";
+import {stylesFromTemplate} from "@polymer/polymer/lib/utils/style-gather";
+import {css, registerStyles, unsafeCSS} from '@vaadin/vaadin-themable-mixin/register-styles';
+import stylesCss from './styles.css';
+import '@vaadin/vaadin-lumo-styles/color.js';
+import '@vaadin/vaadin-lumo-styles/typography.js';
+import vaadinTextFieldCss from './components/vaadin-text-field.css';
 
 // target: Document | ShadowRoot
 export const injectGlobalCss = (css, target, first) => {
@@ -36,10 +40,6 @@ const getStyleModule = (id) => {
       .join(" ");
   return cssText;
 };
-import stylesCss from './styles.css';
-import '@vaadin/vaadin-lumo-styles/color.js';
-import '@vaadin/vaadin-lumo-styles/typography.js';
-import vaadinTextFieldCss from './components/vaadin-text-field.css';
 
 window.Vaadin = window.Vaadin || {};
 window.Vaadin['_vaadintheme_my-theme_globalCss'] = window.Vaadin['_vaadintheme_my-theme_globalCss'] || [];

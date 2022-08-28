@@ -1,7 +1,5 @@
 package net.timeboxing.settings;
 
-import net.timeboxing.settings.setting.Setting;
-
 import java.util.Optional;
 
 /**

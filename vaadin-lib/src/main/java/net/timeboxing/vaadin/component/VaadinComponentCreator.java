@@ -1,12 +1,10 @@
 package net.timeboxing.vaadin.component;
 
 import com.google.inject.Injector;
-import com.vaadin.flow.component.Component;
 
 import javax.inject.Inject;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
-import java.util.Arrays;
 
 public class VaadinComponentCreator {
 

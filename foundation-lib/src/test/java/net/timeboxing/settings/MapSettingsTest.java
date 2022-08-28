@@ -3,8 +3,6 @@ package net.timeboxing.settings;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import net.timeboxing.settings.guice.MapSettingsModule;
-import net.timeboxing.settings.guice.PropertiesSettingsModule;
-import net.timeboxing.settings.impl.MapSettings;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

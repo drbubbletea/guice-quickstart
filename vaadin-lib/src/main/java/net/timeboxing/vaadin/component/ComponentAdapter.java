@@ -1,6 +1,5 @@
 package net.timeboxing.vaadin.component;
 
-import com.vaadin.flow.component.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
