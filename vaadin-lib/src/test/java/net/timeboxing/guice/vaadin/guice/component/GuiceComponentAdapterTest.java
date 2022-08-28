@@ -1,11 +1,11 @@
-package net.timeboxing.guice.vaadin.guice;
+package net.timeboxing.guice.vaadin.guice.component;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import net.timeboxing.guice.vaadin.guice.impl.DefaultUser;
-import net.timeboxing.guice.vaadin.guice.impl.User;
-import net.timeboxing.guice.vaadin.guice.impl.UserEditComponent;
-import net.timeboxing.guice.vaadin.guice.impl.UserViewComponent;
+import net.timeboxing.guice.vaadin.guice.component.impl.DefaultUser;
+import net.timeboxing.guice.vaadin.guice.component.impl.User;
+import net.timeboxing.guice.vaadin.guice.component.impl.UserEditComponent;
+import net.timeboxing.guice.vaadin.guice.component.impl.UserViewComponent;
 import net.timeboxing.vaadin.component.ComponentAdapter;
 import net.timeboxing.vaadin.component.ComponentPurpose;
 import net.timeboxing.vaadin.component.VaadinComponent;

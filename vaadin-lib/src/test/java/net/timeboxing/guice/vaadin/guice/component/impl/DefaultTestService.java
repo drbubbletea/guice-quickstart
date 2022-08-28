@@ -1,4 +1,4 @@
-package net.timeboxing.guice.vaadin.guice.impl;
+package net.timeboxing.guice.vaadin.guice.component.impl;
 
 public class DefaultTestService implements TestService {
     @Override

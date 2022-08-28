@@ -1,4 +1,4 @@
-package net.timeboxing.guice.vaadin.guice.impl;
+package net.timeboxing.guice.vaadin.guice.component.impl;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Label;
