@@ -2,16 +2,20 @@ package net.timeboxing.settings.setting.impl;
 
 import net.timeboxing.settings.setting.Setting;
 
-public class IntegerSetting implements Setting<Integer> {
+public class IntegerSetting extends AbstractSetting<Integer> {
 
-    private final Integer value;
+    public IntegerSetting(Integer value, String name) {
+        super(value, name);
+    }
 
-    public IntegerSetting(Integer value) {
-        this.value = value;
+
+    @Override
+    protected String serialize() {
+        return value.toString();
     }
 
     @Override
-    public Integer get() {
-        return null;
+    protected Integer deserialize(String value) {
+        return Integer.valueOf(value);
     }
 }
