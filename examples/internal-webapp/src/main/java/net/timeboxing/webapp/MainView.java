@@ -11,6 +11,11 @@ import net.timeboxing.settings.Settings;
 import net.timeboxing.vaadin.component.ComponentAdapter;
 import net.timeboxing.vaadin.component.ComponentPurpose;
 import net.timeboxing.vaadin.component.VaadinComponent;
+import net.timeboxing.vaadin.event.ListenerRegistration;
+import net.timeboxing.vaadin.event.VaadinComponentEventBus;
+import net.timeboxing.vaadin.event.impl.ConfirmEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.util.Optional;
@@ -23,8 +28,17 @@ import java.util.Optional;
 @UIScope
 public class MainView extends VerticalLayout {
 
+    private static final Logger LOG = LoggerFactory.getLogger(MainView.class);
+
+    private final VaadinComponentEventBus eventBus;
+    private ListenerRegistration registration;
+
     @Inject
-    public MainView(GreetService greetService, Settings settings) {
+    public MainView(GreetService greetService, Settings settings, VaadinComponentEventBus eventBus) {
+        this.eventBus = eventBus;
+        registration = eventBus.listen(ConfirmEvent.class, event -> {
+            LOG.info("invoked!");
+        });
         // Use TextField for standard text input
         TextField textField = new TextField("Your name");
         textField.addThemeName("bordered");
