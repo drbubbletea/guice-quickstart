@@ -59,6 +59,6 @@ public class VaadinComponentEventListenerTest {
     }
 
     private <T extends ComponentEvent> void runMe(T t) {
-        System.out.println("Success");
+        /* NOOP */
     }
 }
