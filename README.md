@@ -8,11 +8,7 @@ https://github.com/drbubbletea/guice-quickstart
 
 ## Libraries
 
-### [adapter-lib](./adapter-lib)
-
 ### [foundation-lib](./foundation-lib)
-
-### [rest-lib](./rest-lib)
 
 ### [vaadin-lib](./vaadin-lib)
 
