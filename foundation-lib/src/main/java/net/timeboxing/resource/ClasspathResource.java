@@ -6,11 +6,15 @@ import java.io.InputStream;
 
 public class ClasspathResource {
 
+    private ClasspathResource() {
+        /* NOOP */
+    }
+
     public static String get(String filename) {
         try  (InputStream is = Class.forName(Thread.currentThread().getStackTrace()[2].getClassName()).getResourceAsStream(filename)) {
             return new String(is.readAllBytes());
         } catch (ClassNotFoundException | IOException | NullPointerException e) {
-            throw new RuntimeException(e);
+            throw new ClasspathResourceNotFoundException(e);
         }
     }
 }
