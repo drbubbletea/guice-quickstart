@@ -1,8 +1,16 @@
 package net.timeboxing.resource;
 
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class ClasspathResource {
 
     public static String get(String filename) {
-        return null;
+        try  (InputStream is = Class.forName(Thread.currentThread().getStackTrace()[2].getClassName()).getResourceAsStream(filename)) {
+            return new String(is.readAllBytes());
+        } catch (ClassNotFoundException | IOException | NullPointerException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
