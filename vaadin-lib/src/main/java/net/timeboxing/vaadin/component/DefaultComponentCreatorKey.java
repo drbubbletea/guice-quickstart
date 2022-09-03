@@ -2,12 +2,12 @@ package net.timeboxing.vaadin.component;
 
 import com.google.common.base.Objects;
 
-public class ComponentCreatorKey {
+public class DefaultComponentCreatorKey {
 
     private final Class<?> forClass;
     private final ComponentPurpose purpose;
 
-    public ComponentCreatorKey(Class<?> forClass, ComponentPurpose purpose) {
+    public DefaultComponentCreatorKey(Class<?> forClass, ComponentPurpose purpose) {
         this.forClass = forClass;
         this.purpose = purpose;
     }
@@ -24,7 +24,7 @@ public class ComponentCreatorKey {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ComponentCreatorKey that = (ComponentCreatorKey) o;
+        DefaultComponentCreatorKey that = (DefaultComponentCreatorKey) o;
         return Objects.equal(forClass, that.forClass) && purpose == that.purpose;
     }
 

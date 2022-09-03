@@ -16,7 +16,7 @@ public class VaadinComponentModule extends AbstractModule {
 
     private final String packageToScan;
 
-    private final TypeLiteral<ComponentCreatorKey> componentCreatorKeyTypeLiteral = TypeLiteral.get(ComponentCreatorKey.class);
+    private final TypeLiteral<DefaultComponentCreatorKey> componentCreatorKeyTypeLiteral = TypeLiteral.get(DefaultComponentCreatorKey.class);
     private final TypeLiteral<VaadinComponentCreator> componentCreatorTypeLiteral = TypeLiteral.get(VaadinComponentCreator.class);
 
     public VaadinComponentModule(String packageToScan) {
@@ -29,13 +29,13 @@ public class VaadinComponentModule extends AbstractModule {
 
         Reflections reflections = new Reflections(packageToScan);
         Set<Class<?>> components = reflections.getTypesAnnotatedWith(ComponentFor.class);
-        MapBinder<ComponentCreatorKey, VaadinComponentCreator> creators = MapBinder.newMapBinder(binder(), componentCreatorKeyTypeLiteral, componentCreatorTypeLiteral);
+        MapBinder<DefaultComponentCreatorKey, VaadinComponentCreator> creators = MapBinder.newMapBinder(binder(), componentCreatorKeyTypeLiteral, componentCreatorTypeLiteral);
         for (Class<?> component : components) {
             LOG.debug("Found class {}", component.getCanonicalName());
             ComponentFor annotation = component.getAnnotation(ComponentFor.class);
             Class<?> forClass = annotation.forClass();
             ComponentPurpose purpose = annotation.purpose();
-            ComponentCreatorKey key = new ComponentCreatorKey(forClass, purpose);
+            DefaultComponentCreatorKey key = new DefaultComponentCreatorKey(forClass, purpose);
             VaadinComponentCreator creator = new VaadinComponentCreator(component);
             creators.addBinding(key).toInstance(creator);
             LOG.debug("Bound creator: {}", key);

@@ -56,4 +56,14 @@ class GuiceComponentAdapterTest {
         Assertions.assertTrue(component.isPresent());
         Assertions.assertEquals(UserEditComponent.class, component.orElseThrow().getClass());
     }
+
+    @Test
+    void customPurpose() {
+        User user = new DefaultUser(5);
+        Injector injector = Guice.createInjector(new TestVaadinComponentModule());
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.EDIT);
+
+        Assertions.assertTrue(component.isPresent());
+        Assertions.assertEquals(UserEditComponent.class, component.orElseThrow().getClass());
+    }
 }
