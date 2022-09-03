@@ -8,38 +8,44 @@ import javax.inject.Provider;
 import java.util.Map;
 import java.util.Optional;
 
-public class DefaultVaadinComponentFactory implements VaadinComponentFactory {
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultVaadinComponentFactory.class);
+public class CustomVaadinComponentFactory implements VaadinComponentFactory {
 
-    private final Provider<Map<DefaultComponentCreatorKey, DefaultVaadinComponentCreator>> creatorsProvider;
+    private static final Logger LOG = LoggerFactory.getLogger(CustomVaadinComponentFactory.class);
+
+    private final Provider<Map<CustomComponentCreatorKey, CustomVaadinComponentCreator>> creatorsProvider;
 
     @Inject
-    public DefaultVaadinComponentFactory(Provider<Map<DefaultComponentCreatorKey, DefaultVaadinComponentCreator>> provider) {
+    public CustomVaadinComponentFactory(Provider<Map<CustomComponentCreatorKey, CustomVaadinComponentCreator>> provider) {
         this.creatorsProvider = provider;
     }
 
     @Override
     public Optional<VaadinComponent> get(Object source, Object... purpose) {
-        if (purpose.length != 1 || !ComponentPurpose.class.isAssignableFrom(purpose[0].getClass())) {
+        if (purpose.length != 2 || !String.class.isAssignableFrom(purpose[0].getClass()) || !String.class.isAssignableFrom(purpose[1].getClass())) {
             throw new ComponentAdapterException("Only purpose ComponentPurpose is supported in this VaadinComponentFactory");
         }
-        DefaultComponentCreatorKey key = new DefaultComponentCreatorKey(source.getClass(), (ComponentPurpose) purpose[0]);
+        String type = (String) purpose[0];
+        String purposeVal = (String) purpose[1];
+
+        CustomComponentCreatorKey key = new CustomComponentCreatorKey(source.getClass(), type, purposeVal);
 
         LOG.debug("Looking for creator for {}", key);
-        DefaultVaadinComponentCreator creator = creatorsProvider.get().getOrDefault(key, null);
+        Map<CustomComponentCreatorKey, CustomVaadinComponentCreator> map = creatorsProvider.get();
+
+        CustomVaadinComponentCreator creator = creatorsProvider.get().getOrDefault(key, null);
         VaadinComponent result = null;
         if (creator != null) {
-            result = creator.create(source, (ComponentPurpose) purpose[0]);
+            result = creator.create(source, purpose);
         }
         if (result == null) {
             // find creator for interface
             Class<?>[] interfaces = source.getClass().getInterfaces();
             for (int i = 0; i < interfaces.length; i++) {
-                key = new DefaultComponentCreatorKey(interfaces[i], (ComponentPurpose) purpose[0]);
+                key = new CustomComponentCreatorKey(interfaces[i], type, purposeVal);
                 LOG.debug("Looking for creator for {}", key);
                 creator = creatorsProvider.get().getOrDefault(key, null);
                 if (creator != null) {
-                    result = creator.create(source, (ComponentPurpose) purpose[0]);
+                    result = creator.create(source, purpose);
                     break;
                 }
             }

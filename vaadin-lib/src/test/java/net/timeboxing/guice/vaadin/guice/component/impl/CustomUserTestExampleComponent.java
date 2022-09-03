@@ -8,10 +8,10 @@ import net.timeboxing.vaadin.component.VaadinComponent;
 import javax.inject.Inject;
 
 @ComponentFor(forClass = User.class, purposeType = "TEST", purposeValue = "EXAMPLE")
-public class CustomUserComponent implements VaadinComponent {
+public class CustomUserTestExampleComponent implements VaadinComponent {
 
     @Inject
-    public CustomUserComponent() {
+    public CustomUserTestExampleComponent() {
         /* NOOP */
     }
     private final Component component = new Label("testing");

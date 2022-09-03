@@ -32,12 +32,4 @@ public class DefaultComponentCreatorKey {
     public int hashCode() {
         return Objects.hashCode(forClass, purpose);
     }
-
-    public Class<?> source() {
-        return forClass;
-    }
-
-    public ComponentPurpose purpose() {
-        return purpose;
-    }
 }

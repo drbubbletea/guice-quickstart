@@ -9,7 +9,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
 
-public class VaadinComponentCreator {
+public class CustomVaadinComponentCreator {
 
     private Injector injector;
     private final Class<?> componentClass;
@@ -19,7 +19,7 @@ public class VaadinComponentCreator {
     private final Type[] genericTypes;
     private final Annotation[][] parameterAnnotations;
 
-    public VaadinComponentCreator(Class<?> componentClass) {
+    public CustomVaadinComponentCreator(Class<?> componentClass) {
         this.componentClass = componentClass;
         this.constructor = getConstructor();
         this.parameterTypes = constructor.getParameterTypes();
@@ -32,9 +32,12 @@ public class VaadinComponentCreator {
         this.injector = injector;
     }
 
-    public VaadinComponent create(Object source, ComponentPurpose purpose) {
+    public VaadinComponent create(Object source, Object... purpose) {
+        if (purpose.length != 2 || !String.class.isAssignableFrom(purpose[0].getClass()) || !String.class.isAssignableFrom(purpose[1].getClass())) {
+            throw new ComponentAdapterException("Only custom purpose type and value is supported in this VaadinComponentCreator");
+        }
         try {
-            Object[] parameters = getParameters(purpose, source);
+            Object[] parameters = getParameters((String) purpose[0], (String) purpose[1], source);
             Object instance = constructor.newInstance(parameters);
             // handle any injection outside of the constructor
             injector.injectMembers(instance);
@@ -44,17 +47,17 @@ public class VaadinComponentCreator {
         }
     }
 
-    private Object[] getParameters(ComponentPurpose purpose, Object source) {
+    private Object[] getParameters(String purpose, String value, Object source) {
         Object[] parameters = new Object[constructor.getParameterCount()];
         for (int i = 0; i < parameters.length; i++) {
             boolean found = false;
-            if (ComponentPurpose.class == parameterTypes[i]) {
-                parameters[i] = purpose;
-                continue;
-            }
             for (Annotation annotation: parameterAnnotations[i]) {
                 if (Source.class == annotation.annotationType()) {
                     parameters[i] = source;
+                    found = true;
+                    break;
+                } else if (Purpose.class == annotation.annotationType()) {
+                    parameters[i] = value;
                     found = true;
                     break;
                 }
