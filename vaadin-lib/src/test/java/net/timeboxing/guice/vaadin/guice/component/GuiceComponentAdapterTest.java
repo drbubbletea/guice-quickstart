@@ -14,10 +14,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-public class GuiceComponentAdapterTest {
+class GuiceComponentAdapterTest {
 
     @Test
-    public void canAdapt() {
+    void canAdapt() {
         User user = new DefaultUser(5);
         Injector injector = Guice.createInjector(new TestVaadinComponentModule());
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
@@ -27,7 +27,7 @@ public class GuiceComponentAdapterTest {
     }
 
     @Test
-    public void adaptContainsPurpose() {
+    void adaptContainsPurpose() {
         User user = new DefaultUser(5);
         Injector injector = Guice.createInjector(new TestVaadinComponentModule());
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
@@ -38,7 +38,7 @@ public class GuiceComponentAdapterTest {
 
 
     @Test
-    public void adaptContainsInjectedMembers() {
+    void adaptContainsInjectedMembers() {
         User user = new DefaultUser(5);
         Injector injector = Guice.createInjector(new TestVaadinComponentModule());
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.VIEW);
@@ -48,7 +48,7 @@ public class GuiceComponentAdapterTest {
     }
 
     @Test
-    public void differentPurposeSameClass() {
+    void differentPurposeSameClass() {
         User user = new DefaultUser(5);
         Injector injector = Guice.createInjector(new TestVaadinComponentModule());
         Optional<VaadinComponent> component = ComponentAdapter.adapt(user, ComponentPurpose.EDIT);

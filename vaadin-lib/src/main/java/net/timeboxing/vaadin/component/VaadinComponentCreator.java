@@ -50,16 +50,13 @@ public class VaadinComponentCreator {
             boolean found = false;
             if (ComponentPurpose.class == parameterTypes[i]) {
                 parameters[i] = purpose;
-                found = true;
                 continue;
             }
-            if (!found) {
-                for (Annotation annotation: parameterAnnotations[i]) {
-                    if (Source.class == annotation.annotationType()) {
-                        parameters[i] = source;
-                        found = true;
-                        break;
-                    }
+            for (Annotation annotation: parameterAnnotations[i]) {
+                if (Source.class == annotation.annotationType()) {
+                    parameters[i] = source;
+                    found = true;
+                    break;
                 }
             }
             if (!found) {
@@ -70,9 +67,9 @@ public class VaadinComponentCreator {
     }
 
     private Constructor<?> getConstructor() {
-        for (Constructor<?> constructor: componentClass.getConstructors()) {
-            if (constructor.isAnnotationPresent(Inject.class)) {
-                return constructor;
+        for (Constructor<?> ctor: componentClass.getConstructors()) {
+            if (ctor.isAnnotationPresent(Inject.class)) {
+                return ctor;
             }
         }
         throw new ComponentAdapterException(String.format("No constructor annotated with javax.inject.Inject found in %s", componentClass.getName()));
