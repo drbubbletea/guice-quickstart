@@ -1,18 +1,18 @@
 package net.timeboxing.resource.test;
 
-import net.timeboxing.resource.ClasspathResource;
+import net.timeboxing.resource.ClassResource;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Intentionally in a package different from ClasspathResource to ensure
+ * Intentionally in a package different from ClassResource to ensure
  * we get the package of this class and not the package of classpath resource.
  */
-class ClasspathResourceTest {
+class ClassResourceTest {
 
     @Test
     void canGetByPackageResourceFolder() {
-        String value = ClasspathResource.get("test.txt");
+        String value = ClassResource.get("test.txt");
         Assertions.assertEquals("lorem ipsum", value);
     }
 }
