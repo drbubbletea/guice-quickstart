@@ -24,7 +24,7 @@ public class ComponentAdapter {
     }
 
     /**
-     * Find a suitable Component based on the ComponentPurpose value provided.
+     * Find a suitable VaadinComponent based on the ComponentPurpose value provided.
      */
     public static Optional<VaadinComponent> adapt(Object source, ComponentPurpose purpose) {
         if (factoryProvider == null) {
@@ -33,11 +33,21 @@ public class ComponentAdapter {
         return factoryProvider.get().get(source, purpose);
     }
 
+    /**
+     * Find a suitable VaadinComponent based on a String type and purpose.
+     */
     public static Optional<VaadinComponent> adapt(Object source, String type, String purpose) {
         if (factoryProvider == null) {
             throw new ComponentAdapterException("Custom component factory not initialized");
         }
         return customFactoryProvider.get().get(source, type, purpose);
+    }
+
+    public static Optional<VaadinComponent> adapt(Object source, Class<? extends Enum<?>> customEnum, String purpose) {
+        if (factoryProvider == null) {
+            throw new ComponentAdapterException("Custom component factory not initialized");
+        }
+        return customFactoryProvider.get().get(source, customEnum, purpose);
     }
 
 }

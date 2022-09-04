@@ -38,19 +38,31 @@ public class VaadinComponentModule extends AbstractModule {
             LOG.debug("Found class {}", component.getCanonicalName());
             ComponentFor annotation = component.getAnnotation(ComponentFor.class);
             Class<?> forClass = annotation.forClass();
-            if (Strings.isNullOrEmpty(annotation.purposeType()) && Strings.isNullOrEmpty(annotation.purposeValue())) {
-                ComponentPurpose purpose = annotation.purpose();
-                DefaultComponentCreatorKey key = new DefaultComponentCreatorKey(forClass, purpose);
-                DefaultVaadinComponentCreator creator = new DefaultVaadinComponentCreator(component);
-                defaultCreators.addBinding(key).toInstance(creator);
-                LOG.debug("Bound creator: {}", key);
-            } else {
+            if (!Strings.isNullOrEmpty(annotation.purposeType())) {
+                if (Strings.isNullOrEmpty(annotation.purposeValue())) {
+                    throw new ComponentAdapterException(String.format("Class %s has custom purpose type specified but empty purposeValue", component));
+                }
                 String purpose = annotation.purposeType();
                 String value = annotation.purposeValue();
                 CustomComponentCreatorKey key = new CustomComponentCreatorKey(forClass, purpose, value);
                 CustomVaadinComponentCreator creator = new CustomVaadinComponentCreator(component);
                 customCreators.addBinding(key).toInstance(creator);
                 LOG.debug("Bound creator: {}", key);
+            } else if (ComponentPurpose.class.equals(annotation.purposeEnum())) {
+                ComponentPurpose purpose = annotation.purpose();
+                Class<? extends Enum<?>> enumClass = purpose.getClass();
+                DefaultComponentCreatorKey<? extends Enum<?>> key = new DefaultComponentCreatorKey<>(forClass, purpose.getClass(), purpose);
+                DefaultVaadinComponentCreator creator = new DefaultVaadinComponentCreator(component);
+                defaultCreators.addBinding(key).toInstance(creator);
+                LOG.debug("Bound creator: {}", key);
+            } else {
+                if (Strings.isNullOrEmpty(annotation.purposeValue())) {
+                    throw new ComponentAdapterException(String.format("Class %s has custom purpose enum specified but empty purposeValue", component));
+                }
+                ComponentPurpose purpose = annotation.purpose();
+                DefaultComponentCreatorKey key = new DefaultComponentCreatorKey(forClass, purpose.getClass(), purpose);
+                DefaultVaadinComponentCreator creator = new DefaultVaadinComponentCreator(component);
+                defaultCreators.addBinding(key).toInstance(creator);
             }
         }
     }

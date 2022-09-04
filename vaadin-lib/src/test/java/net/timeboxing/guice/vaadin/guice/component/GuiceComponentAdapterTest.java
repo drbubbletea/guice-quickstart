@@ -83,4 +83,28 @@ class GuiceComponentAdapterTest {
         CustomUserAnotherBarComponent casted = ((CustomUserAnotherBarComponent) component.orElseThrow());
         Assertions.assertEquals("BAR", casted.purpose());
     }
+
+    @Test
+    void customEnumFoo() {
+        User user = new DefaultUser(5);
+        Injector injector = Guice.createInjector(new TestVaadinComponentModule());
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, "ANOTHER", "CUSTOM_FOO");
+
+        Assertions.assertTrue(component.isPresent());
+        Assertions.assertEquals(CustomEnumUserFooComponent.class, component.orElseThrow().getClass());
+        CustomEnumUserFooComponent casted = ((CustomEnumUserFooComponent) component.orElseThrow());
+        Assertions.assertEquals(CustomPurpose.CUSTOM_FOO, casted.purpose());
+    }
+
+    @Test
+    void customEnumBar() {
+        User user = new DefaultUser(5);
+        Injector injector = Guice.createInjector(new TestVaadinComponentModule());
+        Optional<VaadinComponent> component = ComponentAdapter.adapt(user, CustomPurpose.class, "CUSTOM_BAR");
+
+        Assertions.assertTrue(component.isPresent());
+        Assertions.assertEquals(CustomEnumUserBarComponent.class, component.orElseThrow().getClass());
+        CustomEnumUserBarComponent casted = ((CustomEnumUserBarComponent) component.orElseThrow());
+        Assertions.assertEquals(CustomPurpose.CUSTOM_BAR, casted.purpose());
+    }
 }
