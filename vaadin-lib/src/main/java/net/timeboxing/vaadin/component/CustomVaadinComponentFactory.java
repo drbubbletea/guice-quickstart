@@ -28,9 +28,7 @@ public class CustomVaadinComponentFactory implements VaadinComponentFactory {
         String purposeVal = (String) purpose[1];
 
         CustomComponentCreatorKey key = new CustomComponentCreatorKey(source.getClass(), type, purposeVal);
-
         LOG.debug("Looking for creator for {}", key);
-        Map<CustomComponentCreatorKey, CustomVaadinComponentCreator> map = creatorsProvider.get();
 
         CustomVaadinComponentCreator creator = creatorsProvider.get().getOrDefault(key, null);
         VaadinComponent result = null;

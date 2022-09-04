@@ -25,8 +25,6 @@ public class ComponentAdapter {
 
     /**
      * Find a suitable Component based on the ComponentPurpose value provided.
-     *
-     * TODO: clean up this method
      */
     public static Optional<VaadinComponent> adapt(Object source, ComponentPurpose purpose) {
         if (factoryProvider == null) {

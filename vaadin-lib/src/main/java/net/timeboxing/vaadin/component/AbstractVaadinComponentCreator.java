@@ -13,7 +13,6 @@ public abstract class AbstractVaadinComponentCreator {
     private final Class<?> componentClass;
     protected final Constructor<?> constructor;
 
-    private final Object[] parameterTypes;
     private final Type[] genericTypes;
     private final Annotation[][] parameterAnnotations;
 
@@ -22,7 +21,6 @@ public abstract class AbstractVaadinComponentCreator {
     protected AbstractVaadinComponentCreator(Class<?> componentClass) {
         this.componentClass = componentClass;
         this.constructor = getConstructor();
-        this.parameterTypes = constructor.getParameterTypes();
         this.genericTypes = constructor.getGenericParameterTypes();
         this.parameterAnnotations = constructor.getParameterAnnotations();
     }
@@ -48,7 +46,7 @@ public abstract class AbstractVaadinComponentCreator {
         }
         return parameters;
     }
-    protected Constructor<?> getConstructor() {
+    protected Constructor getConstructor() {
         for (Constructor<?> ctor: componentClass.getConstructors()) {
             if (ctor.isAnnotationPresent(Inject.class)) {
                 return ctor;
