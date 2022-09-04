@@ -80,5 +80,7 @@ class GuiceComponentAdapterTest {
 
         Assertions.assertTrue(component.isPresent());
         Assertions.assertEquals(CustomUserAnotherBarComponent.class, component.orElseThrow().getClass());
+        CustomUserAnotherBarComponent casted = ((CustomUserAnotherBarComponent) component.orElseThrow());
+        Assertions.assertEquals("BAR", casted.purpose());
     }
 }
