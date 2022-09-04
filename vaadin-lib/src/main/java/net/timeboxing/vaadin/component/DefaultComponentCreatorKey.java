@@ -2,24 +2,21 @@ package net.timeboxing.vaadin.component;
 
 import com.google.common.base.Objects;
 
-public class DefaultComponentCreatorKey<T extends Enum<T>> {
+public class DefaultComponentCreatorKey {
 
     private final Class<?> forClass;
-    private final Class<T> purposeEnum;
-    private final T purposeValue;
+    private final ComponentPurpose purpose;
 
-    public DefaultComponentCreatorKey(Class<?> forClass, Class<T> purposeEnum, T purposeValue) {
+    public DefaultComponentCreatorKey(Class<?> forClass, ComponentPurpose purpose) {
         this.forClass = forClass;
-        this.purposeEnum = purposeEnum;
-        this.purposeValue = purposeValue;
+        this.purpose = purpose;
     }
 
     @Override
     public String toString() {
-        return "DefaultComponentCreatorKey{" +
+        return "ComponentCreatorKey{" +
                 "forClass=" + forClass +
-                ", purposeEnum=" + purposeEnum +
-                ", purposeValue=" + purposeValue +
+                ", purpose=" + purpose +
                 '}';
     }
 
@@ -27,12 +24,12 @@ public class DefaultComponentCreatorKey<T extends Enum<T>> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        DefaultComponentCreatorKey<?> that = (DefaultComponentCreatorKey<?>) o;
-        return Objects.equal(forClass, that.forClass) && Objects.equal(purposeEnum, that.purposeEnum) && Objects.equal(purposeValue, that.purposeValue);
+        DefaultComponentCreatorKey that = (DefaultComponentCreatorKey) o;
+        return Objects.equal(forClass, that.forClass) && purpose == that.purpose;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(forClass, purposeEnum, purposeValue);
+        return Objects.hashCode(forClass, purpose);
     }
 }

@@ -19,8 +19,6 @@ public @interface ComponentFor {
     Class<?> forClass();
 
     ComponentPurpose purpose() default ComponentPurpose.DEFAULT;
-    
-    Class<? extends Enum<?>> purposeEnum() default ComponentPurpose.class;
 
     String purposeType() default "";
 
