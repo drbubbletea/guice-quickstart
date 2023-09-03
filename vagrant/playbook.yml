@@ -6,3 +6,4 @@
   roles:
     - role: mariadb
     - role: core
+    - role: tomcat
