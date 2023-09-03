@@ -4,6 +4,6 @@
 #  vars:
 #
   roles:
-    - role: mariadb
     - role: core
+    - role: mariadb
     - role: tomcat

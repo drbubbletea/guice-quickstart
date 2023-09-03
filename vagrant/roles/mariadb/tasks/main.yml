@@ -33,3 +33,9 @@
     name: mariadb
     enabled: true
     state: started
+- name: Open MariaDB Port
+  become: yes
+  ansible.posix.firewalld:
+    port: 3306/tcp
+    permanent: true
+    state: enabled

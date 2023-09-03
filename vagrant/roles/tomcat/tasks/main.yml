@@ -60,3 +60,9 @@
     daemon_reload: true
     state: started
     enabled: true
+- name: Open Port
+  become: yes
+  ansible.posix.firewalld:
+    port: 8080/tcp
+    permanent: true
+    state: enabled

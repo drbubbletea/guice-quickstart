@@ -5,3 +5,9 @@
   ansible.builtin.dnf:
     name: java-11-openjdk
     state: present
+- name: FirewallD Started and Enabled
+  become: yes
+  ansible.builtin.systemd_service:
+    name: firewalld
+    state: started
+    enabled: true
