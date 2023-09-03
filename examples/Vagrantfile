@@ -1,0 +1,4 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "almalinux/9"
+  config.vm.box_version = "9.2.20230513"
+end
