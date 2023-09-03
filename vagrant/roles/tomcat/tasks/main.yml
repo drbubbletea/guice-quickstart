@@ -53,6 +53,25 @@
       [Install]
       WantedBy=multi-user.target
     dest: /etc/systemd/system/tomcat.service
+- name: Tomcat Users
+  become: yes
+  template:
+    src: tomcat-users.xml.j2
+    dest: /opt/tomcat/conf/tomcat-users.xml
+    mode: '0750'
+- name: Manager Context Changes Allow All IPs
+  become: yes
+  template:
+    src: manager_context.xml.j2
+    dest: /opt/tomcat/webapps/manager/META-INF/context.xml
+    mode: '0750'
+- name: Open Port
+  become: yes
+  ansible.posix.firewalld:
+    port: 8080/tcp
+    permanent: true
+    state: enabled
+    immediate: true
 - name: Start and Enable Tomcat
   become: yes
   ansible.builtin.systemd_service:
@@ -60,9 +79,3 @@
     daemon_reload: true
     state: started
     enabled: true
-- name: Open Port
-  become: yes
-  ansible.posix.firewalld:
-    port: 8080/tcp
-    permanent: true
-    state: enabled

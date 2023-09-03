@@ -1,4 +1,16 @@
-These
+# URLs, IPs, & Credentials
+
+Provision the VM.
+```
+vagrant up
+```
+
+
+Tomcat
+* http://192.168.56.10:8080/
+* http://192.168.56.10:8080/manager/html
+   * `admin/admin`
+
 
 # Get Started
 The following was testing on AlmaLinux 9.2
@@ -34,4 +46,13 @@ vagrant destroy -f && vagrant up
 Start provision at specific task
 ```
 vagrant provision --start-at-task {task}
+```
+
+
+## Useful Development Commands
+### Firewalld
+
+List open ports
+```
+sudo firewall-cmd --list-ports
 ```
