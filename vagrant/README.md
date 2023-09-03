@@ -29,3 +29,9 @@ Destroy and provision VM.
 ```
 vagrant destroy -f && vagrant up
 ```
+
+
+Start provision at specific task
+```
+provision --start-at-task {task}
+```

@@ -1,0 +1,7 @@
+# roles/mariadb/tasks/main.yml
+---
+- name: Install Java 11
+  become: yes
+  ansible.builtin.dnf:
+    name: java-11-openjdk
+    state: present
