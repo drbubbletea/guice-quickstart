@@ -1,9 +1,10 @@
 # roles/mariadb/tasks/main.yml
 ---
-- name: Install Java 11
+# JDK
+- name: Install Java 11 JDK
   become: yes
   ansible.builtin.dnf:
-    name: java-11-openjdk
+    name: java-11-openjdk-devel
     state: present
 - name: FirewallD Started and Enabled
   become: yes

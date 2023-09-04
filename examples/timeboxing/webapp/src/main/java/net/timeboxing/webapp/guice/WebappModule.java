@@ -10,6 +10,8 @@ import net.timeboxing.webapp.GreetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+
 public class WebappModule extends AbstractModule {
 
     private static final Logger LOG = LoggerFactory.getLogger(WebappModule.class);
@@ -20,7 +22,7 @@ public class WebappModule extends AbstractModule {
 
         LOG.debug("Initializing");
         install(new VaadinComponentModule("net.timeboxing"));
-        install(new PropertiesSettingsModule("application.properties"));
+        install(new PropertiesSettingsModule(System.getProperty("catalina.home") + File.separator + "application.properties"));
         install(new VaadinComponentEventModule(UIScope.class));
         bind(GreetService.class).in(Scopes.SINGLETON);
     }

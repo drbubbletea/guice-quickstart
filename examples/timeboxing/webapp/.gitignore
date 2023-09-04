@@ -27,3 +27,4 @@ error-screenshots/
 frontend/generated/
 
 webpack.generated.js
+/package-lock.json
