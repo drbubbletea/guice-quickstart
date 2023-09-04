@@ -6,12 +6,12 @@
     <artifactId>internal-webapp</artifactId>
     <name>Internal Webapp</name>
     <packaging>war</packaging>
+    <version>0.0.5-SNAPSHOT</version>
 
     <parent>
         <groupId>net.timeboxing</groupId>
-        <artifactId>guice-quickstart</artifactId>
-        <version>0.0.1</version>
-        <relativePath>../../pom.xml</relativePath>
+        <artifactId>examples</artifactId>
+        <version>0.0.4-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -83,6 +83,11 @@
                 <scope>import</scope>
                 <version>${vaadin.version}</version>
             </dependency>
+            <dependency>
+                <groupId>net.timeboxing</groupId>
+                <artifactId>guice-quickstart-bom</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -90,12 +95,10 @@
         <dependency>
             <groupId>net.timeboxing</groupId>
             <artifactId>vaadin-lib</artifactId>
-            <version>0.0.6</version>
         </dependency>
         <dependency>
             <groupId>net.timeboxing</groupId>
             <artifactId>foundation-lib</artifactId>
-            <version>0.0.4</version>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
