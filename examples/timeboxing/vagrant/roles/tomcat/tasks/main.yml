@@ -103,3 +103,10 @@
     daemon_reload: true
     state: started
     enabled: true
+# app properties (TODO: move to separate role)
+- name: App Properties
+  become: yes
+  template:
+    src: application.properties.j2
+    dest: /opt/tomcat/application.properties
+    mode: '0750'
