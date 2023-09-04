@@ -6,13 +6,13 @@
     name: mariadb_repo
     description: MariaDB 10.8
     enabled: yes
-    baseurl: https://rpm.mariadb.org/10.8/rhel/$releasever/$basearch
+    baseurl: https://rpm.mariadb.org/10.11/rhel/$releasever/$basearch
     gpgkey: https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
     gpgcheck: yes
 - name: Install MariaDB from Repo
   become: yes
   ansible.builtin.dnf:
-    name: mariadb-server >= 10.8
+    name: mariadb-server >= 10.11
     enablerepo: mariadb_repo
     state: present
 - name: Install network config file
