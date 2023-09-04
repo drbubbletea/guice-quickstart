@@ -1,11 +1,13 @@
-Moduile
-API
+Requires
+* MariaDB 10.8.x
 
-Jobs
 
-Webapp
+Modules
+* API
+* Jobs
+* Webapp
+* Vagrant
 
-Vagrant
 
 
 # IntelliJ Remote Tomcat Server
