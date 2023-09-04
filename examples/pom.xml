@@ -16,8 +16,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>internal-webapp</module>
-        <module>jobs</module>
-        <module>rest-api</module>
+        <module>timeboxing</module>
     </modules>
 </project>
