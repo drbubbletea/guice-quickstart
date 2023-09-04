@@ -1,3 +1,5 @@
+Warning: The VM provisioned by this configuration is optimized for development only. Do not use for anything beyond development.
+
 # URLs, IPs, & Credentials
 
 Provision the VM.
