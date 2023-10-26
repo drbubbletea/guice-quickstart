@@ -59,7 +59,7 @@
     </dependency>
     <dependency>
       <groupId>net.timeboxing</groupId>
-      <artifactId>rest-lib</artifactId>
+      <artifactId>lib-rest</artifactId>
     </dependency>
     <dependency>
       <groupId>org.jboss.resteasy</groupId>
