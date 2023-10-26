@@ -98,7 +98,7 @@
         </dependency>
         <dependency>
             <groupId>net.timeboxing</groupId>
-            <artifactId>foundation-lib</artifactId>
+            <artifactId>lib-foundation</artifactId>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>

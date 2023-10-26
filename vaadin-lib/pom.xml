@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>net.timeboxing</groupId>
-            <artifactId>foundation-lib</artifactId>
+            <artifactId>lib-foundation</artifactId>
             <version>0.0.5-SNAPSHOT</version>
         </dependency>
         <dependency>

@@ -12,7 +12,7 @@
   <name>guice-quickstart</name>
 
   <modules>
-    <module>foundation-lib</module>
+    <module>lib-foundation</module>
     <module>vaadin-lib</module>
     <module>rest-lib</module>
     <module>examples</module>
