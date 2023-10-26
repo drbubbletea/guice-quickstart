@@ -15,8 +15,9 @@
     <module>lib-foundation</module>
     <module>lib-vaadin</module>
     <module>lib-rest</module>
-    <module>examples</module>
+    <module>lib-adapter</module>
     <module>guice-quickstart-bom</module>
+    <module>examples</module>
   </modules>
 
   <properties>
