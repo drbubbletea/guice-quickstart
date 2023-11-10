@@ -1,6 +1,7 @@
 package net.timeboxing.adapter.guice;
 
 import com.google.inject.AbstractModule;
+import net.timeboxing.adapter.AdaptedFrom;
 import org.reflections.Reflections;
 import org.reflections.util.ConfigurationBuilder;
 import org.slf4j.Logger;
@@ -21,5 +22,13 @@ public class AdapterModule extends AbstractModule {
     protected void configure() {
         LOG.info("Initializing");
         Reflections reflections = new Reflections(new ConfigurationBuilder().forPackages(packagesToScan));
+
+        Set<Class<?>> adaptedFromClasses = reflections.getTypesAnnotatedWith(AdaptedFrom.class);
+
+        for (Class<?> adaptedFrom: adaptedFromClasses) {
+            LOG.debug("Found class {}", adaptedFrom.getCanonicalName());
+            AdaptedFrom annotation = adaptedFrom.getAnnotation(AdaptedFrom.class);
+            // TODO: create factory
+        }
     }
 }
