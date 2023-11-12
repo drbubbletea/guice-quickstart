@@ -12,4 +12,7 @@ public @interface AdaptedFrom {
     Class<?> from();
 
     Class<?> to();
+
+    Class<? extends Enum<?>> purposeEnum() default AdapterPurpose.class;
+    String purposeValue() default "DEFAULT"; // must match an enum value name
 }

@@ -14,6 +14,9 @@ public class GuiceAOPAdaptModule extends AbstractModule {
     private static final Logger LOG = LoggerFactory.getLogger(GuiceAOPAdaptModule.class);
     @Override
     protected void configure() {
-        bindInterceptor(Matchers.any(), Matchers.annotatedWith(AdaptMethod.class), new GuiceAOPAdaptMethodInterceptor());
+        LOG.info("Initializing");
+        GuiceAOPAdaptMethodInterceptor interceptor = new GuiceAOPAdaptMethodInterceptor();
+        requestInjection(interceptor);
+        bindInterceptor(Matchers.any(), Matchers.annotatedWith(AdaptMethod.class), interceptor);
     }
 }
