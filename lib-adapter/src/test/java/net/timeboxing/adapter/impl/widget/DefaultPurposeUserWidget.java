@@ -7,11 +7,11 @@ import net.timeboxing.adapter.impl.User;
 import javax.inject.Inject;
 
 @AdaptedFrom(from = User.class, to = Widget.class)
-public class UserWidget implements Widget {
+public class DefaultPurposeUserWidget implements Widget {
 
     private final User user;
     @Inject
-    public UserWidget(@Adaptee User user) {
+    public DefaultPurposeUserWidget(@Adaptee User user) {
         this.user = user;
     }
     @Override
