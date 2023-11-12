@@ -2,9 +2,11 @@ package net.timeboxing.adapter;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import net.timeboxing.adapter.impl.CustomPurpose;
 import net.timeboxing.adapter.impl.DomainFactory;
 import net.timeboxing.adapter.impl.TestAdapterModule;
 import net.timeboxing.adapter.impl.User;
+import net.timeboxing.adapter.impl.widget.CustomFooUserWidget;
 import net.timeboxing.adapter.impl.widget.DefaultPurposeUserWidget;
 import net.timeboxing.adapter.impl.widget.Widget;
 import org.junit.jupiter.api.Assertions;
@@ -32,5 +34,16 @@ class GuiceAOPAdapterTest {
         Assertions.assertTrue(userWidget.get().getClass().isAssignableFrom(DefaultPurposeUserWidget.class));
         Widget widget = userWidget.get();
         Assertions.assertEquals("Crazy Bob!!!", widget.display());
+    }
+
+    @Test
+    void canAdaptCustomPurposeEnumFooPurposeValue() {
+        Injector injector = Guice.createInjector(new TestAdapterModule("net.timeboxing.adapter"));
+        DomainFactory factory = injector.getInstance(DomainFactory.class);
+        User user = factory.create("Crazy Bob");
+        Optional<Widget> userWidget = user.adaptTo(Widget.class, CustomPurpose.class, CustomPurpose.FOO);
+        Assertions.assertTrue(userWidget.get().getClass().isAssignableFrom(CustomFooUserWidget.class));
+        Widget widget = userWidget.get();
+        Assertions.assertEquals("Crazy Bob foo", widget.display());
     }
 }
