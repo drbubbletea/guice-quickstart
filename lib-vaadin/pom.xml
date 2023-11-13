@@ -41,6 +41,11 @@
             <version>0.0.5-SNAPSHOT</version>
         </dependency>
         <dependency>
+            <groupId>net.timeboxing</groupId>
+            <artifactId>lib-adapter</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
         </dependency>
@@ -62,6 +67,11 @@
             <groupId>com.vaadin</groupId>
             <artifactId>flow-html-components</artifactId>
             <version>1.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

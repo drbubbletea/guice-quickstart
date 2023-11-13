@@ -50,7 +50,18 @@ public class DefaultAdaptedFromCreator implements AdaptedFromCreator {
                     found = true;
                     break;
                 } else if (Purpose.class == annotation.annotationType()) {
-                    parameters[i] = purposeValue;
+                    Object enumPurposeValue = null;
+                    Enum[] values = purposeEnum.getEnumConstants();
+                    for (Enum value: values) {
+                        if (value.name().equals(purposeValue)) {
+                            enumPurposeValue = value;
+                            break;
+                        }
+                    }
+                    if (null == enumPurposeValue) {
+                        throw new AdaptException("Failed to find enum with value" + purposeValue);
+                    }
+                    parameters[i] = enumPurposeValue;
                     found = true;
                     break;
                 }
@@ -78,7 +89,7 @@ public class DefaultAdaptedFromCreator implements AdaptedFromCreator {
             injector.injectMembers(instance);
             return instance;
         } catch (Exception e) {
-            throw new AdaptException("Failed to create component instance", e);
+            throw new AdaptException("Failed to create component instance. Possibly forgot to annotate @Adaptee or @Purpose on the source constructor parameter?", e);
         }
     }
 }

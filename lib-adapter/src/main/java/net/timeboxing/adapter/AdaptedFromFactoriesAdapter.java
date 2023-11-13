@@ -14,7 +14,7 @@ public class AdaptedFromFactoriesAdapter implements Adapter {
 
     @Override
     public <T> Optional<T> adaptTo(Object adaptee, Class<T> desiredClass, Class<? extends Enum<?>> purposeEnum, Object purposeValue) {
-        Optional<T> result = (Optional<T>) factory.get(adaptee, purposeEnum, purposeValue.toString());
+        Optional<T> result = (Optional<T>) factory.get(adaptee, desiredClass, purposeEnum, purposeValue.toString());
         return result;
     }
 }

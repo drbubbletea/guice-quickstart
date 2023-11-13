@@ -2,11 +2,13 @@ package net.timeboxing.guice.vaadin.guice.component.impl;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Label;
+import net.timeboxing.adapter.Adaptee;
+import net.timeboxing.adapter.Purpose;
 import net.timeboxing.vaadin.component.*;
 
 import javax.inject.Inject;
 
-@ComponentFor(forClass = User.class, purpose = ComponentPurpose.VIEW)
+@ComponentFor(forClass = User.class, purposeValue = "VIEW")
 public class UserViewComponent implements VaadinComponent {
 
     private final User user;
@@ -16,7 +18,7 @@ public class UserViewComponent implements VaadinComponent {
     private final TestService testService;
 
     @Inject
-    public UserViewComponent(@Source User user, @Purpose ComponentPurpose purpose, TestService testService) {
+    public UserViewComponent(@Adaptee User user, @Purpose ComponentPurpose purpose, TestService testService) {
         this.user = user;
         this.purpose = purpose;
         this.testService = testService;

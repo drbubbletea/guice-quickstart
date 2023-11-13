@@ -20,13 +20,14 @@ public class DefaultAdaptedFromFactory implements AdaptedFromFactory {
     }
 
     @Override
-    public Optional<Object> get(Object source, Class<? extends Enum<?>> purposeEnum, Object purposeValue) {
+    public Optional<Object> get(Object source, Class<?> desiredClass, Class<? extends Enum<?>> purposeEnum, Object purposeValue) {
         Map<DefaultAdaptedFromCreatorKey, DefaultAdaptedFromCreator> map = creatorsProvider.get();
         PossiblyEnhancedClass pec = new PossiblyEnhancedClass(source);
 
-        AdaptedFromCreatorKey key = new DefaultAdaptedFromCreatorKey(pec.realClass(), purposeEnum, purposeValue);
+        AdaptedFromCreatorKey key = new DefaultAdaptedFromCreatorKey(pec.realClass(), desiredClass, purposeEnum, purposeValue);
         LOG.debug("Looking for creator for {}", key);
 
+        Map<DefaultAdaptedFromCreatorKey, DefaultAdaptedFromCreator> creators = creatorsProvider.get();
         AdaptedFromCreator creator = creatorsProvider.get().getOrDefault(key, null);
         Object result = null;
         if (creator != null) {
@@ -36,7 +37,7 @@ public class DefaultAdaptedFromFactory implements AdaptedFromFactory {
             // find creator
             Class<?>[] interfaces = pec.interfaces();
             for (int i = 0; i < interfaces.length; i++) {
-                key = new DefaultAdaptedFromCreatorKey(interfaces[i], purposeEnum, purposeValue);
+                key = new DefaultAdaptedFromCreatorKey(interfaces[i], desiredClass, purposeEnum, purposeValue);
                 LOG.debug("Looking for creator for {}", key);
                 creator = creatorsProvider.get().getOrDefault(key, null);
                 if (creator != null) {

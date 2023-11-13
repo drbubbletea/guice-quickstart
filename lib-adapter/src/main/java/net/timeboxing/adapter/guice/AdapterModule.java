@@ -46,9 +46,9 @@ public class AdapterModule extends AbstractModule {
             MapBinder<DefaultAdaptedFromCreatorKey, DefaultAdaptedFromCreator> defaultCreators = MapBinder.newMapBinder(binder(), creatorKeyTypeLiteral, creatorTypeLiteral);
 
             for (Class<?> adaptedFrom: adaptedFromClasses) {
-                LOG.debug("Found class {}", adaptedFrom.getCanonicalName());
+                LOG.debug("Found AdaptedFrom target {}", adaptedFrom.getCanonicalName());
                 AdaptedFrom annotation = adaptedFrom.getAnnotation(AdaptedFrom.class);
-                DefaultAdaptedFromCreatorKey key = new DefaultAdaptedFromCreatorKey(annotation.from(), annotation.purposeEnum(), annotation.purposeValue());
+                DefaultAdaptedFromCreatorKey key = new DefaultAdaptedFromCreatorKey(annotation.from(), annotation.to(), annotation.purposeEnum(), annotation.purposeValue());
                 DefaultAdaptedFromCreator creator = new DefaultAdaptedFromCreator(adaptedFrom, annotation.purposeEnum(), annotation.purposeValue());
                 defaultCreators.addBinding(key).toInstance(creator);
                 LOG.debug("Bound creator: {}", key);
@@ -88,10 +88,11 @@ public class AdapterModule extends AbstractModule {
                         Annotation annotation = Arrays.stream(annotations).filter(t -> {
                             return t.annotationType().equals(customAdaptedFromAnnotation);
                         }).findFirst().get();
-                        DefaultAdaptedFromCreatorKey key = new DefaultAdaptedFromCreatorKey(translation.from(annotation), translation.purposeEnum(annotation), translation.purposeValue(annotation));
+                        DefaultAdaptedFromCreatorKey key = new DefaultAdaptedFromCreatorKey(translation.from(annotation), translation.to(annotation), translation.purposeEnum(annotation), translation.purposeValue(annotation));
                         DefaultAdaptedFromCreator creator = new DefaultAdaptedFromCreator(adaptedFrom, translation.purposeEnum(annotation), translation.purposeValue(annotation));
                         defaultCreators.addBinding(key).toInstance(creator);
-                        LOG.debug("Bound creator: {}", key);
+                        LOG.debug("Bound creator: {}", creator);
+                        LOG.debug("...to key: {}", key);
                     }
                 }
             }
@@ -100,5 +101,6 @@ public class AdapterModule extends AbstractModule {
 
         bind(Adapter.class).to(AdaptedFromFactoriesAdapter.class).in(Scopes.SINGLETON);
         bind(AdaptedFromFactory.class).to(DefaultAdaptedFromFactory.class).in(Scopes.SINGLETON);
+        LOG.info("Complete");
     }
 }

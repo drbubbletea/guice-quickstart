@@ -26,7 +26,7 @@ public class GuiceAOPAdaptMethodInterceptor implements MethodInterceptor {
         if (1 == length) {
          return adapter.adaptTo(caller, desiredClass, AdapterPurpose.class, AdapterPurpose.DEFAULT);
         } else if (2 == length) {
-            return adapter.adaptTo(caller, desiredClass, AdapterPurpose.class, invocation.getArguments()[1]);
+            return adapter.adaptTo(caller, desiredClass, (Class) invocation.getArguments()[1].getClass(), invocation.getArguments()[1]);
         } else if (3 == length) {
             return adapter.adaptTo(caller, desiredClass, (Class) invocation.getArguments()[1], invocation.getArguments()[2]);
         } else {
