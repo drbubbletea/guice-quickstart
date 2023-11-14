@@ -86,12 +86,18 @@
             <dependency>
                 <groupId>net.timeboxing</groupId>
                 <artifactId>guice-quickstart-bom</artifactId>
+                <type>pom</type>
+                <scope>import</scope>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>net.timeboxing</groupId>
+            <artifactId>lib-adapter</artifactId>
+        </dependency>
         <dependency>
             <groupId>net.timeboxing</groupId>
             <artifactId>lib-vaadin</artifactId>
@@ -190,6 +196,36 @@
                     <execution>
                         <goals>
                             <goal>prepare-frontend</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>aspectj-maven-plugin</artifactId>
+                <version>1.14.0</version>
+                <configuration>
+                    <complianceLevel>11</complianceLevel>
+                    <source>11</source>
+                    <target>11</target>
+                    <showWeaveInfo>true</showWeaveInfo>
+                    <verbose>true</verbose>
+                    <Xlint>ignore</Xlint>
+                    <encoding>UTF-8</encoding>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>net.timeboxing</groupId>
+                            <artifactId>lib-adapter</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- use this goal to weave all your main classes -->
+                            <goal>compile</goal>
+                            <!-- use this goal to weave all your test classes -->
+                            <goal>test-compile</goal>
                         </goals>
                     </execution>
                 </executions>

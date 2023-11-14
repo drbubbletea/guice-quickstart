@@ -3,6 +3,8 @@ package net.timeboxing.webapp.guice;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.vaadin.guice.annotation.UIScope;
+import net.timeboxing.adapter.guice.AdapterModule;
+import net.timeboxing.adapter.guice.AspectJAdaptModule;
 import net.timeboxing.settings.guice.PropertiesSettingsModule;
 import net.timeboxing.vaadin.guice.VaadinComponentEventModule;
 import net.timeboxing.vaadin.guice.VaadinComponentModule;
@@ -21,6 +23,8 @@ public class WebappModule extends AbstractModule {
         super.configure();
 
         LOG.debug("Initializing");
+        install(new AdapterModule("net.timeboxing"));
+        install(new AspectJAdaptModule());
         install(new VaadinComponentModule("net.timeboxing"));
         install(new PropertiesSettingsModule(System.getProperty("catalina.home") + File.separator + "application.properties"));
         install(new VaadinComponentEventModule(UIScope.class));
