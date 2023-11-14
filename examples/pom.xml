@@ -16,8 +16,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>timeboxing</module>
-        <module>budgets</module>
-        <module>swing-testing</module>
+        <module>jobs-with-quartz</module>
+        <module>swing</module>
+        <module>qtjambi</module>
+        <module>rest-api</module>
+        <module>vaadin</module>
     </modules>
 </project>
