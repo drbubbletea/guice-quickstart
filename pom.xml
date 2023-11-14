@@ -16,6 +16,7 @@
     <module>lib-vaadin</module>
     <module>lib-rest</module>
     <module>lib-adapter</module>
+    <module>lib-qtjambi</module>
     <module>guice-quickstart-bom</module>
     <module>examples</module>
   </modules>
