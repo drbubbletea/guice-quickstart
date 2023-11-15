@@ -12,11 +12,11 @@ import javax.inject.Inject;
 public class AdaptAspect {
 
     private static final Logger LOG = LoggerFactory.getLogger(AdaptAspect.class);
+
     @Inject
     private Adapter adapter;
-
-//    @Around("execution( * net.timeboxing.adapter.Adaptable.adaptTo(Class)) && target(net.timeboxing.adapter.Adaptable)")
-    @Around("execution( * net.timeboxing.adapter.Adaptable.adaptTo(..)) && target(net.timeboxing.adapter.Adaptable)")
+    @Around("call( * net.timeboxing.adapter.Adaptable.adaptTo(..))")
+//    @Around(value = "target(net.timeboxing.adapter.Adaptable) && execution(* net.timeboxing.adapter.Adaptable+.adaptTo(..))")
     public Object around(ProceedingJoinPoint pjp) {
         LOG.debug("Around triggered for {}", pjp.getThis().getClass().getCanonicalName());
         int length = pjp.getArgs().length;

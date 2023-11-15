@@ -23,10 +23,10 @@ public class WebappModule extends AbstractModule {
         super.configure();
 
         LOG.debug("Initializing");
-        install(new AdapterModule("net.timeboxing"));
         install(new AspectJAdaptModule());
+        install(new AdapterModule("net.timeboxing"));
         install(new VaadinComponentModule("net.timeboxing"));
-        install(new PropertiesSettingsModule(System.getProperty("catalina.home") + File.separator + "application.properties"));
+        install(new PropertiesSettingsModule(System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "application.properties"));
         install(new VaadinComponentEventModule(UIScope.class));
         bind(GreetService.class).in(Scopes.SINGLETON);
     }

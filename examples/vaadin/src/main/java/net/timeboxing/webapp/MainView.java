@@ -59,7 +59,7 @@ public class MainView extends VerticalLayout {
 
         add(textField, button);
 
-        User user = new User(123);
+        DefaultUser user = new DefaultUser(123);
         Optional<VaadinComponent> component = user.adaptTo(VaadinComponent.class, ComponentPurpose.VIEW);
         add(component.orElseThrow().get());
 
