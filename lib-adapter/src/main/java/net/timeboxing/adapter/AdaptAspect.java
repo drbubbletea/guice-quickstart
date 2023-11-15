@@ -20,12 +20,12 @@ public class AdaptAspect {
     public Object around(ProceedingJoinPoint pjp) {
         LOG.debug("Around triggered for {}", pjp.getThis().getClass().getCanonicalName());
         int length = pjp.getArgs().length;
-        Object caller = pjp.getThis();
+        Object caller = pjp.getTarget();
         Class<?> desiredClass = ((Class) pjp.getArgs()[0]);
         if (1 == length) {
             return adapter.adaptTo(caller, desiredClass, AdapterPurpose.class, AdapterPurpose.DEFAULT);
         } else if (2 == length) {
-            return adapter.adaptTo(caller, desiredClass, (Class) pjp.getArgs()[1].getClass(), pjp.getArgs()[2]);
+            return adapter.adaptTo(caller, desiredClass, (Class) pjp.getArgs()[1].getClass(), pjp.getArgs()[1]);
         } else if (3 == length) {
             return adapter.adaptTo(caller, desiredClass, (Class) pjp.getArgs()[1], pjp.getArgs()[2]);
         } else {

@@ -3,6 +3,8 @@ package net.timeboxing.webapp;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import net.timeboxing.adapter.Adaptee;
+import net.timeboxing.adapter.Purpose;
 import net.timeboxing.resource.ClassResource;
 import net.timeboxing.vaadin.component.*;
 import net.timeboxing.vaadin.event.VaadinComponentEventBus;
@@ -11,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Inject;
 
-@ComponentFor(forClass = User.class, purpose = ComponentPurpose.VIEW)
+@ComponentFor(forClass = User.class, purposeValue = "VIEW")
 public class UserViewComponent implements VaadinComponent {
 
     private final User user;
@@ -26,7 +28,7 @@ public class UserViewComponent implements VaadinComponent {
     private final String example = ClassResource.get("test.txt");
 
     @Inject
-    public UserViewComponent(User user, ComponentPurpose purpose, GreetService greetService, VaadinComponentEventBus eventBus) {
+    public UserViewComponent(@Adaptee User user, @Purpose ComponentPurpose purpose, GreetService greetService, VaadinComponentEventBus eventBus) {
         this.eventBus = eventBus;
         this.user = user;
         this.purpose = purpose;

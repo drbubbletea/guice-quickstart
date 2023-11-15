@@ -22,6 +22,10 @@ public class DefaultAdaptedFromFactory implements AdaptedFromFactory {
     @Override
     public Optional<Object> get(Object source, Class<?> desiredClass, Class<? extends Enum<?>> purposeEnum, Object purposeValue) {
         Map<DefaultAdaptedFromCreatorKey, DefaultAdaptedFromCreator> map = creatorsProvider.get();
+        // TODO: remove after debugging
+        if (null != map) {
+            LOG.info("Map size: {}", map.size());
+        }
         PossiblyEnhancedClass pec = new PossiblyEnhancedClass(source);
 
         AdaptedFromCreatorKey key = new DefaultAdaptedFromCreatorKey(pec.realClass(), desiredClass, purposeEnum, purposeValue);
