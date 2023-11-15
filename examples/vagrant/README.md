@@ -1,5 +1,23 @@
 Warning: The VM provisioned by this configuration is optimized for development only. Do not use for anything beyond development.
 
+For Windows, the initial Vagrant build will fail. Install pip and then provision again.
+
+```
+vagrant ssh
+
+
+sudo dnf install python3-pip -y
+pip install ansible==7.1.0
+
+
+
+
+vagrant reload --provision
+
+
+```
+
+
 # URLs, IPs, & Credentials
 
 Provision the VM.
