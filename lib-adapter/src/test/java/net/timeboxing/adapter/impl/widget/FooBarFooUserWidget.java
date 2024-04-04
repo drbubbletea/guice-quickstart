@@ -1,10 +1,10 @@
 package net.timeboxing.adapter.impl.widget;
 
+import jakarta.inject.Inject;
 import net.timeboxing.adapter.Adaptee;
 import net.timeboxing.adapter.impl.FooBarFor;
 import net.timeboxing.adapter.impl.User;
 
-import javax.inject.Inject;
 
 @FooBarFor(from = User.class, to = Widget.class)
 public class FooBarFooUserWidget implements Widget {

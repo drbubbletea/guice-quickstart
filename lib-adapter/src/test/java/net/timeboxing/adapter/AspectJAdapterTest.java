@@ -41,7 +41,7 @@ public class AspectJAdapterTest {
         });
         Throwable cause = exception.getCause();
         Assertions.assertEquals(AdaptException.class, cause.getClass());
-        Assertions.assertEquals("No constructor annotated with javax.inject.Inject found in net.exceptions1.impl.widget.CustomErrorWidgetNoInjectConstructor", cause.getMessage());
+        Assertions.assertEquals("No constructor annotated with jakarta.inject.Inject found in net.exceptions1.impl.widget.CustomErrorWidgetNoInjectConstructor", cause.getMessage());
     }
     @Test
     @DisplayName("Missing Adaptee-annotated constructor param throws helpful exception")

@@ -2,10 +2,10 @@ package net.timeboxing.database;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import jakarta.inject.Provider;
 import org.h2.jdbcx.JdbcDataSource;
 import org.jdbi.v3.core.Jdbi;
 
-import javax.inject.Provider;
 import javax.sql.DataSource;
 import java.lang.annotation.Annotation;
 

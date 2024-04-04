@@ -2,11 +2,13 @@ package net.timeboxing.guice.vaadin.guice.component.impl;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.Label;
+import jakarta.inject.Inject;
 import net.timeboxing.adapter.Adaptee;
 import net.timeboxing.adapter.Purpose;
-import net.timeboxing.vaadin.component.*;
+import net.timeboxing.vaadin.component.ComponentFor;
+import net.timeboxing.vaadin.component.ComponentPurpose;
+import net.timeboxing.vaadin.component.VaadinComponent;
 
-import javax.inject.Inject;
 
 @ComponentFor(forClass = User.class, purpose = ComponentPurpose.VIEW)
 public class UserViewComponent implements VaadinComponent {

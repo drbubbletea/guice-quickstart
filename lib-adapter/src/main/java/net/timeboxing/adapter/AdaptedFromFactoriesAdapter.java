@@ -1,6 +1,7 @@
 package net.timeboxing.adapter;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
+
 import java.util.Optional;
 
 public class AdaptedFromFactoriesAdapter implements Adapter {

@@ -1,6 +1,7 @@
 package net.timeboxing;
 
-import javax.inject.Provider;
+
+import jakarta.inject.Provider;
 
 public interface CurrentValue<T> extends Provider<T> {
 
