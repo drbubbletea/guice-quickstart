@@ -24,7 +24,7 @@
     <module>lib-vaadin</module>
     <module>lib-rest</module>
     <module>lib-adapter</module>
-    <module>bom-guice-quickstart</module>
+    <module>bom</module>
   </modules>
 
   <properties>
