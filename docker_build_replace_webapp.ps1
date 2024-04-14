@@ -2,3 +2,6 @@
 ./mvnw clean package -Pproduction -f ./tb-webapp/pom.xml
 
 docker-compose up -d --no-deps --build webapp
+
+# open in firefox
+[system.Diagnostics.Process]::Start("firefox","http://localhost:8080/web/")

@@ -2,6 +2,8 @@ version: '3'
 services:
   webapp:
     build: ./tb-webapp/.
+    environment:
+       JPDA_OPTS: "-agentlib:jdwp=transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n"
     depends_on:
       - mariadb
       - flyway
@@ -10,6 +12,8 @@ services:
       - "/usr/local/tomcat/logs/"
     ports:
       - "8080:8080"
+      - "8000:8000"
+    entrypoint: "/usr/local/tomcat/bin/catalina.sh jpda run"
   flyway:
     image: flyway/flyway:10-alpine
     command: -url=jdbc:mariadb://mariadb1:3306/timeboxing  -user=tbuser -password=password migrate

@@ -1,6 +1,6 @@
 <Context
         docBase=""
-        path="web"
+        path="/web"
         reloadable="false">
     <Resource name="jdbc/TimeboxingDS"
               global="jdbc/TimeboxingDS"
