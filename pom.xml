@@ -24,8 +24,7 @@
     <module>lib-vaadin</module>
     <module>lib-rest</module>
     <module>lib-adapter</module>
-    <module>lib-qtjambi</module>
-    <module>guice-quickstart-bom</module>
+    <module>bom-guice-quickstart</module>
   </modules>
 
   <properties>
@@ -48,7 +47,7 @@
     <repository>
       <id>nexus-releases</id>
 <!--      <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>-->
-<!--            <url>file:C:\Users\ccl09c\.m3-releases\</url>-->
+<!--            <url>file:C:\Users\......\.m3-releases\</url>-->
     </repository>
   </distributionManagement>
 
