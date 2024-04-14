@@ -8,7 +8,7 @@
     </parent>
 
     <version>1.0.0</version>
-    <artifactId>bom-guice-quickstart</artifactId>
+    <artifactId>bom</artifactId>
     <packaging>pom</packaging>
 
     <name>guice-quickstart-bom</name>
