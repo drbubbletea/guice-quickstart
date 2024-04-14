@@ -1,6 +1,7 @@
 package net.timeboxing.database;
 
-import javax.inject.Provider;
+import jakarta.inject.Provider;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;

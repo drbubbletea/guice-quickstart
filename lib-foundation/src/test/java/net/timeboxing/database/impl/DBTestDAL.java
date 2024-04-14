@@ -1,10 +1,10 @@
 package net.timeboxing.database.impl;
 
+import jakarta.inject.Inject;
 import net.timeboxing.database.InMemoryDS;
 import net.timeboxing.database.TestDAL;
 import org.jdbi.v3.core.Jdbi;
 
-import javax.inject.Inject;
 
 public class DBTestDAL implements TestDAL {
 

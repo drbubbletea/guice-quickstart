@@ -1,8 +1,8 @@
 package net.timeboxing.guice.vaadin.guice.component.impl;
 
 import com.google.inject.assistedinject.Assisted;
+import jakarta.inject.Inject;
 
-import javax.inject.Inject;
 
 public class DefaultVaadinUser implements User {
 

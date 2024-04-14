@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.Path;
 import javax.ws.rs.ext.Provider;
 
+
 public class RestModule extends AbstractModule {
 
     private static final String INTERNAL_PACKAGE = "net.timeboxing";

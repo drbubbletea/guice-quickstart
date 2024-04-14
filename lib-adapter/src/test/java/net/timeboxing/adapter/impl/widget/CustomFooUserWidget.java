@@ -1,11 +1,11 @@
 package net.timeboxing.adapter.impl.widget;
 
+import jakarta.inject.Inject;
 import net.timeboxing.adapter.AdaptedFrom;
 import net.timeboxing.adapter.Adaptee;
 import net.timeboxing.adapter.impl.CustomPurpose;
 import net.timeboxing.adapter.impl.User;
 
-import javax.inject.Inject;
 
 @AdaptedFrom(from = User.class, to = Widget.class, purposeEnum = CustomPurpose.class, purposeValue = "FOO")
 public class CustomFooUserWidget implements Widget {

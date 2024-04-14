@@ -1,12 +1,12 @@
 package net.timeboxing.adapter;
 
+import jakarta.inject.Inject;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 
 @Aspect
 public class AdaptAspect {

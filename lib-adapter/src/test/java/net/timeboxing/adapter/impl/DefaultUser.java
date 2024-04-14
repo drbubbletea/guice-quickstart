@@ -1,8 +1,7 @@
 package net.timeboxing.adapter.impl;
 
 import com.google.inject.assistedinject.Assisted;
-
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 public class DefaultUser implements User {
 

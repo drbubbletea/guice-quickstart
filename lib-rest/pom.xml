@@ -3,19 +3,19 @@
     <parent>
         <artifactId>guice-quickstart</artifactId>
         <groupId>net.timeboxing</groupId>
-        <version>0.1.0</version>
+        <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>lib-rest</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>lib-rest</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <resteasy.version>4.7.7.Final</resteasy.version>
+        <resteasy.version>4.7.9.Final</resteasy.version>
     </properties>
 
     <build>
@@ -40,9 +40,10 @@
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>

@@ -3,8 +3,8 @@ package net.timeboxing.adapter;
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.TypeLiteral;
+import jakarta.inject.Inject;
 
-import javax.inject.Inject;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Type;
@@ -78,7 +78,7 @@ public class DefaultAdaptedFromCreator implements AdaptedFromCreator {
                 return ctor;
             }
         }
-        throw new AdaptException(String.format("No constructor annotated with javax.inject.Inject found in %s", adaptedFromClass.getName()));
+        throw new AdaptException(String.format("No constructor annotated with jakarta.inject.Inject found in %s", adaptedFromClass.getName()));
     }
 
     protected Object get(Object source) {
