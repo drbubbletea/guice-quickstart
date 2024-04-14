@@ -25,6 +25,9 @@
     <module>lib-rest</module>
     <module>lib-adapter</module>
     <module>bom</module>
+    <module>tb-webapp</module>
+    <module>domain</module>
+    <module>components</module>
   </modules>
 
   <properties>
