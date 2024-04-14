@@ -1,0 +1,43 @@
+version: '3'
+services:
+  webapp:
+    build: ./tb-webapp/.
+    depends_on:
+      - mariadb
+      - flyway
+      - smtp
+    volumes:
+      - "/usr/local/tomcat/logs/"
+    ports:
+      - "8080:8080"
+  flyway:
+    image: flyway/flyway:10-alpine
+    command: -url=jdbc:mariadb://mariadb1:3306/timeboxing  -user=tbuser -password=password migrate
+    volumes:
+      - ./_migrations:/flyway/sql
+    depends_on:
+      mariadb:
+        condition: service_healthy
+  smtp:
+    image: "inbucket/inbucket:sha-2d409bb"
+    ports:
+      - "9000:9000"
+  mariadb:
+    hostname: mariadb1
+    image: "mariadb:10.11"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: timeboxing
+      MYSQL_USER: tbuser
+      MYSQL_PASSWORD: password
+    volumes:
+      - "/var/lib/mysql/data"
+      - "/var/lib/mysql/logs"
+      - "/var/docker/mariadb/conf:/etc/mysql"
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 3s
+      retries: 2

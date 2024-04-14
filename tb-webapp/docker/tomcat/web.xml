@@ -1,0 +1,17 @@
+<Context
+        docBase=""
+        path="web"
+        reloadable="false">
+    <Resource name="jdbc/TimeboxingDS"
+              global="jdbc/TimeboxingDS"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="org.mariadb.jdbc.Driver"
+              url="jdbc:mariadb://mariadb1:3306/timeboxing"
+              username="tbuser"
+              password="password"
+              maxActive="20"
+              maxIdle="10"
+              minIdle="1"
+              maxWait="5000"/>
+</Context>
