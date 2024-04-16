@@ -1,4 +1,4 @@
-package org.vaadin.example;
+package net.timeboxing.webapp;
 
 public class GreetService {
 

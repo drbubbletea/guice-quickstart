@@ -28,6 +28,7 @@
     <module>tb-webapp</module>
     <module>domain</module>
     <module>components</module>
+    <module>domain-dal</module>
   </modules>
 
   <properties>

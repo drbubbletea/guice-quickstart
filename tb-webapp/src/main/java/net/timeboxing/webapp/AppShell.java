@@ -1,4 +1,4 @@
-package org.vaadin.example;
+package net.timeboxing.webapp;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.server.PWA;
