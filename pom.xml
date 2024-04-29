@@ -25,6 +25,7 @@
     <module>lib-rest</module>
     <module>lib-adapter</module>
     <module>bom</module>
+    <module>lib-activemq-parent</module>
   </modules>
 
   <properties>
