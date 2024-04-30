@@ -15,16 +15,30 @@ public class TransactionAspect {
     private TransactionManager transactionManager;
 
     @Around("@annotation(net.timeboxing.transaction.Transactional)")
-    public Object wrapTransaction(ProceedingJoinPoint pjp) {
+    public Object wrapTransaction(ProceedingJoinPoint pjp) throws Exception {
         Transactional annotation = ((MethodSignature) pjp.getSignature()).getMethod().getAnnotation(Transactional.class);
         try {
             transactionManager.begin();
             return pjp.proceed(pjp.getArgs());
         } catch (Throwable e) {
-            // TODO: do not rollback: assignable to exception class defined in annotation?
-            // TODO: rollback: assignable to exception class defined in annotation?
+            rollbackOrCommit(annotation, e);
         } finally {
             transactionManager.commit();
+        }
+    }
+
+    private void rollbackOrCommit(Transactional annotation, Throwable e) throws Exception {
+        for (Class<?> noRollback: annotation.dontRollbackOn()) {
+            if (noRollback.isAssignableFrom(e.getClass())) {
+                transactionManager.commit();
+                return;
+            }
+        }
+        for (Class<?> doRollback: annotation.rollbackOn()) {
+            if (doRollback.isAssignableFrom(e.getClass())) {
+                transactionManager.rollback();
+                return;
+            }
         }
     }
 
